@@ -5,19 +5,19 @@ import java.util.List;
 /**
  * Created by mlaskows on 21/04/2017.
  */
-public final class TSPLIBItem {
+public final class Item {
 
     private final String name;
-    private final TSPLIBType type;
+    private final Type type;
     private final EdgeWeightType edgeWeightType;
     private final int dimension;
     private final int capacity;
     private final String comment;
     private final List<Node> nodes;
 
-    public TSPLIBItem(String name, TSPLIBType type, EdgeWeightType edgeWeightType,
-                      int dimension, int capacity,
-                      String comment, List<Node> nodes) {
+    public Item(String name, Type type, EdgeWeightType edgeWeightType,
+                int dimension, int capacity,
+                String comment, List<Node> nodes) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
@@ -31,7 +31,7 @@ public final class TSPLIBItem {
         return name;
     }
 
-    public TSPLIBType getType() {
+    public Type getType() {
         return type;
     }
 

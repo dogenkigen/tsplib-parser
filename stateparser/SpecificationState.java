@@ -1,9 +1,9 @@
-package com.mlaskows.tsplib.statemachine;
+package com.mlaskows.tsplib.stateparser;
 
 import com.mlaskows.tsplib.EdgeWeightType;
-import com.mlaskows.tsplib.TSPLIBItemBuilder;
-import com.mlaskows.tsplib.TSPLIBKeyword;
-import com.mlaskows.tsplib.TSPLIBType;
+import com.mlaskows.tsplib.ItemBuilder;
+import com.mlaskows.tsplib.Keyword;
+import com.mlaskows.tsplib.Type;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -11,13 +11,13 @@ import com.mlaskows.tsplib.TSPLIBType;
 public class SpecificationState implements State {
 
     @Override
-    public void consumeLine(final TSPLIBParsingContext context,
+    public void consumeLine(final ParsingContext context,
                             final String line,
-                            TSPLIBItemBuilder builder) {
+                            ItemBuilder builder) {
 
         KeywordAndValue keywordAndValue = extractKeywordAndValue(line);
 
-        if (TSPLIBKeyword.isDataKeyword(keywordAndValue.getKeyword())) {
+        if (Keyword.isDataKeyword(keywordAndValue.getKeyword())) {
             context.setState(getState(keywordAndValue.getKeyword()));
             return;
         }
@@ -27,13 +27,13 @@ public class SpecificationState implements State {
     }
 
 
-    private static void addToBuilder(KeywordAndValue keywordAndValue, TSPLIBItemBuilder builder) {
+    private static void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
                 builder.withName(keywordAndValue.getValue());
                 break;
             case TYPE:
-                builder.withType(TSPLIBType.valueOf(keywordAndValue
+                builder.withType(Type.valueOf(keywordAndValue
                         .getValue()));
                 break;
             case COMMENT:

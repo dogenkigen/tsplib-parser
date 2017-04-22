@@ -1,7 +1,7 @@
-package com.mlaskows.tsplib.statemachine;
+package com.mlaskows.tsplib.stateparser;
 
 import com.mlaskows.tsplib.Node;
-import com.mlaskows.tsplib.TSPLIBItemBuilder;
+import com.mlaskows.tsplib.ItemBuilder;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -9,9 +9,9 @@ import com.mlaskows.tsplib.TSPLIBItemBuilder;
 public class CoordinatesDataState implements DataState {
 
     @Override
-    public void consumeLine(final TSPLIBParsingContext context,
+    public void consumeLine(final ParsingContext context,
                             final String line,
-                            TSPLIBItemBuilder builder) {
+                            ItemBuilder builder) {
         if (stateChanged(context, line)) {
             return;
         }

@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.statemachine;
+package com.mlaskows.tsplib.stateparser;
 
 /**
  * Created by mlaskows on 21/04/2017.

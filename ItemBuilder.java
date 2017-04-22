@@ -3,46 +3,46 @@ package com.mlaskows.tsplib;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TSPLIBItemBuilder {
+public class ItemBuilder {
     private String name;
-    private TSPLIBType type;
+    private Type type;
     private int dimension;
     private int capacity;
     private String comment;
     private List<Node> nodes;
     private EdgeWeightType edgeWeightType;
 
-    public TSPLIBItemBuilder withName(String name) {
+    public ItemBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public TSPLIBItemBuilder withType(TSPLIBType type) {
+    public ItemBuilder withType(Type type) {
         this.type = type;
         return this;
     }
 
-    public TSPLIBItemBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
+    public ItemBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
         this.edgeWeightType = edgeWeightType;
         return this;
     }
 
-    public TSPLIBItemBuilder withDimension(int dimension) {
+    public ItemBuilder withDimension(int dimension) {
         this.dimension = dimension;
         return this;
     }
 
-    public TSPLIBItemBuilder withCapacity(int capacity) {
+    public ItemBuilder withCapacity(int capacity) {
         this.capacity = capacity;
         return this;
     }
 
-    public TSPLIBItemBuilder withComment(String comment) {
+    public ItemBuilder withComment(String comment) {
         this.comment = comment;
         return this;
     }
 
-    public TSPLIBItemBuilder addNode(Node node) {
+    public ItemBuilder addNode(Node node) {
         if (nodes == null) {
             nodes = new ArrayList<>();
         }
@@ -50,7 +50,7 @@ public class TSPLIBItemBuilder {
         return this;
     }
 
-    public TSPLIBItem build() {
-        return new TSPLIBItem(name, type, edgeWeightType, dimension, capacity, comment, nodes);
+    public Item build() {
+        return new Item(name, type, edgeWeightType, dimension, capacity, comment, nodes);
     }
 }

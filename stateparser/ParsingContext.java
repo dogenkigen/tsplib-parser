@@ -1,13 +1,13 @@
-package com.mlaskows.tsplib.statemachine;
+package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.TSPLIBItemBuilder;
+import com.mlaskows.tsplib.ItemBuilder;
 
 /**
  * Created by mlaskows on 21/04/2017.
  */
-public class TSPLIBParsingContext {
+public class ParsingContext {
     private State state;
-    public TSPLIBParsingContext() {
+    public ParsingContext() {
         setState(new SpecificationState());
     }
 
@@ -20,7 +20,7 @@ public class TSPLIBParsingContext {
         state = newState;
     }
 
-    public void consumeLine(final String line, TSPLIBItemBuilder builder) {
+    public void consumeLine(final String line, ItemBuilder builder) {
         state.consumeLine(this, line, builder);
     }
 }

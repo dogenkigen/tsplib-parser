@@ -1,7 +1,7 @@
-package com.mlaskows.tsplib.statemachine;
+package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.TSPLIBItemBuilder;
-import com.mlaskows.tsplib.TSPLIBKeyword;
+import com.mlaskows.tsplib.ItemBuilder;
+import com.mlaskows.tsplib.Keyword;
 
 import java.util.stream.Stream;
 
@@ -10,11 +10,11 @@ import java.util.stream.Stream;
  */
 interface State {
 
-    void consumeLine(TSPLIBParsingContext context, String line, TSPLIBItemBuilder builder);
+    void consumeLine(ParsingContext context, String line, ItemBuilder builder);
 
     default KeywordAndValue extractKeywordAndValue(String line) {
         String[] split = line.split(":");
-        TSPLIBKeyword keyword = TSPLIBKeyword.valueOf(split[0].trim());
+        Keyword keyword = Keyword.valueOf(split[0].trim());
         String value = null;
         if (split.length > 1) {
             value = split[1].trim();
@@ -23,12 +23,12 @@ interface State {
     }
 
     default boolean startsWithKeyword(String line) {
-        return Stream.of(TSPLIBKeyword.values())
+        return Stream.of(Keyword.values())
                 .anyMatch(v -> line.contains(v.toString()));
     }
 
 
-    default State getState(TSPLIBKeyword keyword) {
+    default State getState(Keyword keyword) {
         State newState;
         switch (keyword){
             case NODE_COORD_SECTION:

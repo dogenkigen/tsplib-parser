@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by mlaskows on 21/04/2017.
  */
-public enum TSPLIBKeyword {
+public enum Keyword {
 
     //Specification part
 
@@ -23,18 +23,18 @@ public enum TSPLIBKeyword {
     EDGE_DATA_SECTION,
     EDGE_WEIGHT_SECTION;
 
-    private static final Set<TSPLIBKeyword> specificationKeywords = EnumSet.of
+    private static final Set<Keyword> specificationKeywords = EnumSet.of
             (NAME, TYPE, COMMENT, DIMENSION, CAPACITY, EDGE_WEIGHT_TYPE);
 
-    private static final Set<TSPLIBKeyword> dataKeywords = EnumSet.of
+    private static final Set<Keyword> dataKeywords = EnumSet.of
             (NODE_COORD_SECTION, EDGE_DATA_SECTION, EDGE_WEIGHT_SECTION);
 
 
-    public static boolean isSpecificationKeyword(TSPLIBKeyword keyword) {
+    public static boolean isSpecificationKeyword(Keyword keyword) {
         return specificationKeywords.contains(keyword);
     }
 
-    public static boolean isDataKeyword(TSPLIBKeyword keyword) {
+    public static boolean isDataKeyword(Keyword keyword) {
         return dataKeywords.contains(keyword);
     }
 

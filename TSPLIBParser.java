@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.statemachine.TSPLIBParsingContext;
+import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,13 +15,13 @@ import java.util.stream.Stream;
  */
 public class TSPLIBParser {
 
-    public static TSPLIBItem parse(String pathToFile) throws IOException {
-        TSPLIBItemBuilder builder = new TSPLIBItemBuilder();
+    public static Item parse(String pathToFile) throws IOException {
+        ItemBuilder builder = new ItemBuilder();
         Stream<String> stream = Files.lines(Paths.get(pathToFile));
 
         List<String> lines = getNonEmptyTrimmedLines(stream);
 
-        TSPLIBParsingContext context = new TSPLIBParsingContext();
+        ParsingContext context = new ParsingContext();
         for (String line : lines) {
             context.consumeLine(line, builder);
         }
