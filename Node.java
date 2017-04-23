@@ -5,9 +5,9 @@ package com.mlaskows.tsplib;
  */
 public class Node {
 
-    private Integer id;
-    private Double y;
-    private Double x;
+    private final Integer id;
+    private final Double y;
+    private final Double x;
 
     public Node(Integer id, Double y, Double x) {
         this.id = id;
