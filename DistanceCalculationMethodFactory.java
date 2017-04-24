@@ -37,7 +37,7 @@ public class DistanceCalculationMethodFactory {
         BiFunction<Node, Node, Integer> function = (n1, n2) -> {
             double xd = n1.getX() - n2.getX();
             double yd = n1.getY() - n2.getY();
-            return (int) Math.sqrt(xd * xd + yd * yd);
+            return (int) (Math.sqrt(xd * xd + yd * yd) + 0.5);
         };
         return function;
     }
