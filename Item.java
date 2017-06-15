@@ -6,7 +6,7 @@ import java.util.List;
  * Created by mlaskows on 21/04/2017.
  */
 public final class Item {
-
+    // TODO consider refactor for Optionals
     private final String name;
     private final Type type;
     private final EdgeWeightType edgeWeightType;

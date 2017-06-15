@@ -35,7 +35,6 @@ interface State {
                 newState = new CoordinatesDataState();
                 break;
             default:
-                newState = null;
                 throw new TSPLIBException("Can't determine state based on " +
                         "keyword" + keyword);
         }
