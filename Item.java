@@ -14,10 +14,11 @@ public final class Item {
     private final int capacity;
     private final String comment;
     private final List<Node> nodes;
+    private final DisplayDataType displayDataType;
 
     public Item(String name, Type type, EdgeWeightType edgeWeightType,
-                int dimension, int capacity,
-                String comment, List<Node> nodes) {
+                int dimension, int capacity, String comment,
+                DisplayDataType displayDataType, List<Node> nodes) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
@@ -25,6 +26,7 @@ public final class Item {
         this.capacity = capacity;
         this.comment = comment;
         this.nodes = nodes;
+        this.displayDataType = displayDataType;
     }
 
     public String getName() {
@@ -49,6 +51,10 @@ public final class Item {
 
     public String getComment() {
         return comment;
+    }
+
+    public DisplayDataType getDisplayDataType() {
+        return displayDataType;
     }
 
     public List<Node> getNodes() {

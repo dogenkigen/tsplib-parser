@@ -16,15 +16,18 @@ public enum Keyword {
     DIMENSION,
     CAPACITY,
     EDGE_WEIGHT_TYPE,
+    DISPLAY_DATA_TYPE,
 
     // Data part
 
     NODE_COORD_SECTION,
     EDGE_DATA_SECTION,
-    EDGE_WEIGHT_SECTION;
+    EDGE_WEIGHT_SECTION,
+
+    EOF;
 
     private static final Set<Keyword> specificationKeywords = EnumSet.of
-            (NAME, TYPE, COMMENT, DIMENSION, CAPACITY, EDGE_WEIGHT_TYPE);
+            (NAME, TYPE, COMMENT, DIMENSION, CAPACITY, EDGE_WEIGHT_TYPE, DISPLAY_DATA_TYPE);
 
     private static final Set<Keyword> dataKeywords = EnumSet.of
             (NODE_COORD_SECTION, EDGE_DATA_SECTION, EDGE_WEIGHT_SECTION);

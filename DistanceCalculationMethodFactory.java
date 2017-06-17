@@ -9,6 +9,8 @@ import java.util.function.BiFunction;
  */
 public class DistanceCalculationMethodFactory {
 
+    private static final double EARTH_RADIUS = 6378.388;
+
     public static BiFunction<Node, Node, Integer>
     getTwoNodesDistanceCalculationMethod(EdgeWeightType edgeWeightType) {
         switch (edgeWeightType) {
@@ -23,7 +25,7 @@ public class DistanceCalculationMethodFactory {
             case CEIL_2D:
                 break;
             case GEO:
-                break;
+                return getGeoFunction();
             default:
                 //TODO add more intelligent exception here since method might
                 // be called to get 3 nodes function
@@ -33,13 +35,32 @@ public class DistanceCalculationMethodFactory {
         return null;
     }
 
+    private static BiFunction<Node, Node, Integer> getGeoFunction() {
+        return (i, j) -> {
+            double latitudeI = convertToGeographical(i.getX());
+            double longitudeI = convertToGeographical(i.getY());
+            double latitudeJ = convertToGeographical(j.getX());
+            double longitudeJ = convertToGeographical(j.getY());
+            double q1 = Math.cos(longitudeI - longitudeJ);
+            double q2 = Math.cos(latitudeI - latitudeJ);
+            double q3 = Math.cos(latitudeI + latitudeJ);
+            return (int) (EARTH_RADIUS * Math.acos(0.5 * ((1.0 + q1) * q2 -
+                    (1.0 - q1) * q3)) + 1.0);
+        };
+    }
+
+    private static double convertToGeographical(Double v) {
+        int deg = v.intValue();
+        double min = v - deg;
+        return Math.PI * (deg + 0.5 * min / 3.0) / 180;
+    }
+
     private static BiFunction<Node, Node, Integer> getEuc2dFunction() {
-        BiFunction<Node, Node, Integer> function = (n1, n2) -> {
-            double xd = n1.getX() - n2.getX();
-            double yd = n1.getY() - n2.getY();
+        return (i, j) -> {
+            double xd = i.getX() - j.getX();
+            double yd = i.getY() - j.getY();
             return (int) (Math.sqrt(xd * xd + yd * yd) + 0.5);
         };
-        return function;
     }
 
 }

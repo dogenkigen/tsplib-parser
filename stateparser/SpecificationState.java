@@ -1,9 +1,6 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.EdgeWeightType;
-import com.mlaskows.tsplib.ItemBuilder;
-import com.mlaskows.tsplib.Keyword;
-import com.mlaskows.tsplib.Type;
+import com.mlaskows.tsplib.*;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -37,6 +34,7 @@ public class SpecificationState implements State {
                         .getValue()));
                 break;
             case COMMENT:
+                builder.withComment(keywordAndValue.getValue());
                 break;
             case DIMENSION:
                 builder.withDimension(Integer.valueOf(keywordAndValue
@@ -49,6 +47,10 @@ public class SpecificationState implements State {
             case EDGE_WEIGHT_TYPE:
                 builder.withEdgeWeightType(EdgeWeightType
                         .valueOf(keywordAndValue.getValue()));
+                break;
+            case DISPLAY_DATA_TYPE:
+                builder.withDisplayDataType(DisplayDataType.valueOf
+                        (keywordAndValue.getValue()));
                 break;
             default:
                 break;

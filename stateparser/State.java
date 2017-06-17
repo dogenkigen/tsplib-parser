@@ -34,6 +34,9 @@ interface State {
             case NODE_COORD_SECTION:
                 newState = new CoordinatesDataState();
                 break;
+            case EOF:
+                newState = new TerminationState();
+                break;
             default:
                 throw new TSPLIBException("Can't determine state based on " +
                         "keyword" + keyword);

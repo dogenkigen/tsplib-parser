@@ -9,8 +9,9 @@ public class ItemBuilder {
     private int dimension;
     private int capacity;
     private String comment;
-    private List<Node> nodes;
     private EdgeWeightType edgeWeightType;
+    private DisplayDataType displayDataType;
+    private List<Node> nodes;
 
     public ItemBuilder withName(String name) {
         this.name = name;
@@ -42,6 +43,11 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder withDisplayDataType(DisplayDataType displayDataType) {
+        this.displayDataType = displayDataType;
+        return this;
+    }
+
     public ItemBuilder addNode(Node node) {
         if (nodes == null) {
             nodes = new ArrayList<>();
@@ -51,6 +57,7 @@ public class ItemBuilder {
     }
 
     public Item build() {
-        return new Item(name, type, edgeWeightType, dimension, capacity, comment, nodes);
+        return new Item(name, type, edgeWeightType, dimension, capacity,
+                comment, displayDataType, nodes);
     }
 }
