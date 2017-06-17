@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Created by mlaskows on 21/04/2017.
  */
+//TODO add info about thread safety everywhere
 public final class Item {
     // TODO consider refactor for Optionals
     private final String name;
@@ -13,6 +14,7 @@ public final class Item {
     private final int dimension;
     private final int capacity;
     private final String comment;
+    // TODO use immutable collections
     private final List<Node> nodes;
     private final DisplayDataType displayDataType;
 
