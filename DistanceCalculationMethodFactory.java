@@ -12,7 +12,7 @@ public class DistanceCalculationMethodFactory {
     private static final double EARTH_RADIUS = 6378.388;
 
     public static BiFunction<Node, Node, Integer>
-    getTwoNodesDistanceCalculationMethod(EdgeWeightType edgeWeightType) {
+    getDistanceCalculationMethod(EdgeWeightType edgeWeightType) {
         switch (edgeWeightType) {
             case EXPLICIT:
                 break;
