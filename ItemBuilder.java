@@ -8,7 +8,7 @@ public class ItemBuilder {
     private Type type;
     private int dimension;
     private int capacity;
-    private String comment;
+    private StringBuilder comment = new StringBuilder();
     private EdgeWeightType edgeWeightType;
     private DisplayDataType displayDataType;
     private List<Node> nodes;
@@ -39,7 +39,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder withComment(String comment) {
-        this.comment = comment;
+        this.comment.append(comment);
         return this;
     }
 
@@ -58,6 +58,6 @@ public class ItemBuilder {
 
     public Item build() {
         return new Item(name, type, edgeWeightType, dimension, capacity,
-                comment, displayDataType, nodes);
+                comment.toString(), displayDataType, nodes);
     }
 }

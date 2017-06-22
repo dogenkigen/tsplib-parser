@@ -37,10 +37,10 @@ public class DistanceCalculationMethodFactory {
 
     private static BiFunction<Node, Node, Integer> getGeoFunction() {
         return (i, j) -> {
-            double latitudeI = convertToGeographical(i.getX());
-            double longitudeI = convertToGeographical(i.getY());
-            double latitudeJ = convertToGeographical(j.getX());
-            double longitudeJ = convertToGeographical(j.getY());
+            double latitudeI = convertToRadians(i.getX());
+            double longitudeI = convertToRadians(i.getY());
+            double latitudeJ = convertToRadians(j.getX());
+            double longitudeJ = convertToRadians(j.getY());
             double q1 = Math.cos(longitudeI - longitudeJ);
             double q2 = Math.cos(latitudeI - latitudeJ);
             double q3 = Math.cos(latitudeI + latitudeJ);
@@ -49,7 +49,7 @@ public class DistanceCalculationMethodFactory {
         };
     }
 
-    private static double convertToGeographical(Double v) {
+    private static double convertToRadians(Double v) {
         int deg = v.intValue();
         double min = v - deg;
         return Math.PI * (deg + 0.5 * min / 3.0) / 180;
