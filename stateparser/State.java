@@ -38,7 +38,7 @@ interface State {
                 newState = new TerminationState();
                 break;
             default:
-                throw new TSPLIBException("Can't determine state based on " +
+                throw new TspLibException("Can't determine state based on " +
                         "keyword" + keyword);
         }
         return newState;

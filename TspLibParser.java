@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 /**
  * Created by mlaskows on 21/04/2017.
  */
-public class TSPLIBParser {
+public class TspLibParser {
 
     public static Item parse(String pathToFile) throws IOException {
         ItemBuilder builder = new ItemBuilder();

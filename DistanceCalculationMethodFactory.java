@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.stateparser.TSPLIBException;
+import com.mlaskows.tsplib.stateparser.TspLibException;
 
 import java.util.function.BiFunction;
 
@@ -29,7 +29,7 @@ public class DistanceCalculationMethodFactory {
             default:
                 //TODO add more intelligent exception here since method might
                 // be called to get 3 nodes function
-                throw new TSPLIBException(edgeWeightType + " not implemented " +
+                throw new TspLibException(edgeWeightType + " not implemented " +
                         "yet");
         }
         return null;
