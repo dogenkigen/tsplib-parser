@@ -32,7 +32,7 @@ public class TspLibParser {
     private static List<String> getNonEmptyTrimmedLines(Stream<String> stream) {
         return stream
                 .filter(Objects::nonNull)
-                .map(l -> l.trim())
+                .map(String::trim)
                 .filter(l -> !l.isEmpty())
                 .collect(Collectors.toList());
     }
