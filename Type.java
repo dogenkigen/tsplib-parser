@@ -11,26 +11,6 @@ public enum Type {
     TSP,
 
     /**
-     * Data for asymmetric travelling salesman problem
-     */
-    ATSP,
-
-    /**
-     * Data for sequential ordering problem
-     */
-    SOP,
-
-    /**
-     * Hamiltonian cycle problem data
-     */
-    HCP,
-
-    /**
-     * Capacitated vehicle routing problem
-     */
-    CVRP,
-
-    /**
      * A collection of tours
      */
     TOUR;
