@@ -47,6 +47,7 @@ public final class Item {
         return dimension;
     }
 
+    @Deprecated
     public int getCapacity() {
         return capacity;
     }
