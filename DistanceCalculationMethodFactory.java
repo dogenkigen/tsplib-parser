@@ -22,6 +22,8 @@ public class DistanceCalculationMethodFactory {
                 return getMan2dFunction();
             case MAX_2D:
                 return getMax2dFunction();
+            case CEIL_2D:
+                return getCeil2dFunction();
             default:
                 throw new TspLibException(edgeWeightType + " not implemented yet");
         }
@@ -69,5 +71,9 @@ public class DistanceCalculationMethodFactory {
             final double yd = Math.abs(i.getY() - j.getY());
             return (int) Math.max(xd, yd);
         };
+    }
+
+    private static BiFunction<Node, Node, Integer> getCeil2dFunction() {
+        return (i, j) -> (int) Math.ceil(getEuc2dFunction().apply(i, j));
     }
 }
