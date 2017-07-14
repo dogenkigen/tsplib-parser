@@ -16,12 +16,12 @@ public class DistanceCalculationMethodFactory {
         switch (edgeWeightType) {
             case EUC_2D:
                 return getEuc2dFunction();
-            case MAX_2D:
-                return getMax2dFunction();
-            case MAN_2D:
-                return getMan2dFunction();
             case GEO:
                 return getGeoFunction();
+            case MAN_2D:
+                return getMan2dFunction();
+            case MAX_2D:
+                return getMax2dFunction();
             default:
                 throw new TspLibException(edgeWeightType + " not implemented yet");
         }
