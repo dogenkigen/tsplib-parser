@@ -14,53 +14,60 @@ public class DistanceCalculationMethodFactory {
     public static BiFunction<Node, Node, Integer>
     getDistanceCalculationMethod(EdgeWeightType edgeWeightType) {
         switch (edgeWeightType) {
-            case EXPLICIT:
-                break;
             case EUC_2D:
                 return getEuc2dFunction();
             case MAX_2D:
-                break;
+                return getMax2dFunction();
             case MAN_2D:
-                break;
-            case CEIL_2D:
-                break;
+                return getMan2dFunction();
             case GEO:
                 return getGeoFunction();
             default:
-                //TODO add more intelligent exception here since method might
-                // be called to get 3 nodes function
-                throw new TspLibException(edgeWeightType + " not implemented " +
-                        "yet");
+                throw new TspLibException(edgeWeightType + " not implemented yet");
         }
-        return null;
+    }
+
+    private static BiFunction<Node, Node, Integer> getEuc2dFunction() {
+        return (i, j) -> {
+            final double xd = i.getX() - j.getX();
+            final double yd = i.getY() - j.getY();
+            return (int) (Math.sqrt(xd * xd + yd * yd) + 0.5);
+        };
     }
 
     private static BiFunction<Node, Node, Integer> getGeoFunction() {
         return (i, j) -> {
-            double latitudeI = convertToRadians(i.getX());
-            double longitudeI = convertToRadians(i.getY());
-            double latitudeJ = convertToRadians(j.getX());
-            double longitudeJ = convertToRadians(j.getY());
-            double q1 = Math.cos(longitudeI - longitudeJ);
-            double q2 = Math.cos(latitudeI - latitudeJ);
-            double q3 = Math.cos(latitudeI + latitudeJ);
-            return (int) (EARTH_RADIUS * Math.acos(0.5 * ((1.0 + q1) * q2 -
-                    (1.0 - q1) * q3)) + 1.0);
+            final double latitudeI = convertToRadians(i.getX());
+            final double longitudeI = convertToRadians(i.getY());
+            final double latitudeJ = convertToRadians(j.getX());
+            final double longitudeJ = convertToRadians(j.getY());
+            final double q1 = Math.cos(longitudeI - longitudeJ);
+            final double q2 = Math.cos(latitudeI - latitudeJ);
+            final double q3 = Math.cos(latitudeI + latitudeJ);
+            return (int) (EARTH_RADIUS *
+                    Math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0);
         };
     }
 
     private static double convertToRadians(Double v) {
         int deg = v.intValue();
-        double min = v - deg;
+        final double min = v - deg;
         return Math.PI * (deg + 0.5 * min / 3.0) / 180;
     }
 
-    private static BiFunction<Node, Node, Integer> getEuc2dFunction() {
+    private static BiFunction<Node, Node, Integer> getMan2dFunction() {
         return (i, j) -> {
-            double xd = i.getX() - j.getX();
-            double yd = i.getY() - j.getY();
-            return (int) (Math.sqrt(xd * xd + yd * yd) + 0.5);
+            final double xd = Math.abs(i.getX() - j.getX());
+            final double yd = Math.abs(i.getY() - j.getY());
+            return (int) (xd + yd);
         };
     }
 
+    public static BiFunction<Node, Node, Integer> getMax2dFunction() {
+        return (i, j) -> {
+            final double xd = Math.abs(i.getX() - j.getX());
+            final double yd = Math.abs(i.getY() - j.getY());
+            return (int) Math.max(xd, yd);
+        };
+    }
 }
