@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.stateparser;
+package com.mlaskows.tsplib.exception;
 
 /**
  * Created by mlaskows on 21/04/2017.

@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.ItemBuilder;
+import com.mlaskows.tsplib.datamodel.TspBuilder;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -20,7 +20,7 @@ public class ParsingContext {
         state = newState;
     }
 
-    public void consumeLine(final String line, ItemBuilder builder) {
+    public void consumeLine(final String line, TspBuilder builder) {
         state.consumeLine(this, line, builder);
     }
 }

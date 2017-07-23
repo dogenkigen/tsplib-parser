@@ -1,6 +1,9 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.*;
+import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.types.DisplayDataType;
+import com.mlaskows.tsplib.types.EdgeWeightType;
+import com.mlaskows.tsplib.types.Type;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -10,7 +13,7 @@ public class SpecificationState implements State {
     @Override
     public void consumeLine(final ParsingContext context,
                             final String line,
-                            ItemBuilder builder) {
+                            TspBuilder builder) {
 
         KeywordAndValue keywordAndValue = extractKeywordAndValue(line);
 
@@ -24,7 +27,7 @@ public class SpecificationState implements State {
     }
 
 
-    private static void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
+    private static void addToBuilder(KeywordAndValue keywordAndValue, TspBuilder builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
                 builder.withName(keywordAndValue.getValue());

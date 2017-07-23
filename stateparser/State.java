@@ -1,7 +1,7 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.ItemBuilder;
-import com.mlaskows.tsplib.Keyword;
+import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.exception.TspLibException;
 
 import java.util.stream.Stream;
 
@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  */
 interface State {
 
-    void consumeLine(ParsingContext context, String line, ItemBuilder builder);
+    void consumeLine(ParsingContext context, String line, TspBuilder builder);
 
     default KeywordAndValue extractKeywordAndValue(String line) {
         String[] split = line.split(":");

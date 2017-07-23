@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.ItemBuilder;
+import com.mlaskows.tsplib.datamodel.TspBuilder;
 
 /**
  * Created by mlaskows on 17/06/2017.
@@ -8,7 +8,7 @@ import com.mlaskows.tsplib.ItemBuilder;
 public class TerminationState implements State {
 
     @Override
-    public void consumeLine(ParsingContext context, String line, ItemBuilder builder) {
+    public void consumeLine(ParsingContext context, String line, TspBuilder builder) {
         return;
     }
 }

@@ -1,7 +1,5 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.Keyword;
-
 public class KeywordAndValue {
 
     private final Keyword keyword;

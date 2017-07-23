@@ -1,9 +1,13 @@
-package com.mlaskows.tsplib;
+package com.mlaskows.tsplib.datamodel;
+
+import com.mlaskows.tsplib.types.DisplayDataType;
+import com.mlaskows.tsplib.types.EdgeWeightType;
+import com.mlaskows.tsplib.types.Type;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemBuilder {
+public class TspBuilder {
     private String name;
     private Type type;
     private int dimension;
@@ -13,42 +17,42 @@ public class ItemBuilder {
     private DisplayDataType displayDataType;
     private List<Node> nodes;
 
-    public ItemBuilder withName(String name) {
+    public TspBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public ItemBuilder withType(Type type) {
+    public TspBuilder withType(Type type) {
         this.type = type;
         return this;
     }
 
-    public ItemBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
+    public TspBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
         this.edgeWeightType = edgeWeightType;
         return this;
     }
 
-    public ItemBuilder withDimension(int dimension) {
+    public TspBuilder withDimension(int dimension) {
         this.dimension = dimension;
         return this;
     }
 
-    public ItemBuilder withCapacity(int capacity) {
+    public TspBuilder withCapacity(int capacity) {
         this.capacity = capacity;
         return this;
     }
 
-    public ItemBuilder withComment(String comment) {
+    public TspBuilder withComment(String comment) {
         this.comment.append(comment);
         return this;
     }
 
-    public ItemBuilder withDisplayDataType(DisplayDataType displayDataType) {
+    public TspBuilder withDisplayDataType(DisplayDataType displayDataType) {
         this.displayDataType = displayDataType;
         return this;
     }
 
-    public ItemBuilder addNode(Node node) {
+    public TspBuilder addNode(Node node) {
         if (nodes == null) {
             nodes = new ArrayList<>();
         }
@@ -56,8 +60,8 @@ public class ItemBuilder {
         return this;
     }
 
-    public Item build() {
-        return new Item(name, type, edgeWeightType, dimension, capacity,
+    public Tsp build() {
+        return new Tsp(name, type, edgeWeightType, dimension, capacity,
                 comment.toString(), displayDataType, nodes);
     }
 }

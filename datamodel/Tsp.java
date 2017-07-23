@@ -1,4 +1,8 @@
-package com.mlaskows.tsplib;
+package com.mlaskows.tsplib.datamodel;
+
+import com.mlaskows.tsplib.types.DisplayDataType;
+import com.mlaskows.tsplib.types.EdgeWeightType;
+import com.mlaskows.tsplib.types.Type;
 
 import java.util.List;
 
@@ -6,7 +10,7 @@ import java.util.List;
  * Created by mlaskows on 21/04/2017.
  */
 //TODO add info about thread safety everywhere
-public final class Item {
+public final class Tsp {
     // TODO consider refactor for Optionals
     private final String name;
     private final Type type;
@@ -18,9 +22,9 @@ public final class Item {
     private final List<Node> nodes;
     private final DisplayDataType displayDataType;
 
-    public Item(String name, Type type, EdgeWeightType edgeWeightType,
-                int dimension, int capacity, String comment,
-                DisplayDataType displayDataType, List<Node> nodes) {
+    public Tsp(String name, Type type, EdgeWeightType edgeWeightType,
+               int dimension, int capacity, String comment,
+               DisplayDataType displayDataType, List<Node> nodes) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;

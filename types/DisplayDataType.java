@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib;
+package com.mlaskows.tsplib.types;
 
 /**
  * Created by mlaskows on 17/06/2017.

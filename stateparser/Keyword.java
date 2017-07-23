@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib;
+package com.mlaskows.tsplib.stateparser;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -26,12 +26,13 @@ public enum Keyword {
 
     EOF;
 
-    private static final Set<Keyword> specificationKeywords = EnumSet.of
-            (NAME, TYPE, COMMENT, DIMENSION, CAPACITY, EDGE_WEIGHT_TYPE, DISPLAY_DATA_TYPE);
+    private static final Set<Keyword> specificationKeywords =
+            EnumSet.of(NAME, TYPE, COMMENT, DIMENSION, CAPACITY,
+                    EDGE_WEIGHT_TYPE, DISPLAY_DATA_TYPE);
 
-    private static final Set<Keyword> dataKeywords = EnumSet.of
-            (NODE_COORD_SECTION, EDGE_DATA_SECTION, EDGE_WEIGHT_SECTION);
-
+    private static final Set<Keyword> dataKeywords =
+            EnumSet.of(NODE_COORD_SECTION, EDGE_DATA_SECTION,
+                    EDGE_WEIGHT_SECTION);
 
     public static boolean isSpecificationKeyword(Keyword keyword) {
         return specificationKeywords.contains(keyword);
