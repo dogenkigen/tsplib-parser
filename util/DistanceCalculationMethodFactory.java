@@ -26,6 +26,8 @@ public class DistanceCalculationMethodFactory {
                 return getMax2dFunction();
             case CEIL_2D:
                 return getCeil2dFunction();
+            case ATT:
+                return getAttFunction();
             default:
                 throw new TspLibException(edgeWeightType + " not implemented yet");
         }
@@ -78,4 +80,28 @@ public class DistanceCalculationMethodFactory {
     private static BiFunction<Node, Node, Integer> getCeil2dFunction() {
         return (i, j) -> (int) Math.ceil(getEuc2dFunction().apply(i, j));
     }
+
+    private static BiFunction<Node, Node, Integer> getAttFunction() {
+        return (i, j) -> {
+            final double xd = i.getX() - j.getX();
+            final double yd = i.getY() - j.getY();
+            final double rij = Math.sqrt((xd * xd + yd * yd) / 10.0);
+            final double tij = cutDecimal(rij);
+            final int dij;
+
+            if (tij < rij) {
+                dij = (int) tij + 1;
+            } else {
+                dij = (int) tij;
+            }
+
+            return dij;
+        };
+    }
+
+    private static double cutDecimal(double x) {
+        final int k = (int) x;
+        return (double) k;
+    }
+
 }

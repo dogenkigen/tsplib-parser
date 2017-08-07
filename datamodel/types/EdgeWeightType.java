@@ -8,33 +8,38 @@ package com.mlaskows.tsplib.datamodel.types;
 public enum EdgeWeightType {
 
     /**
-     * Weights are listed explicitly in the corresponding section
+     * Weights are listed explicitly in the corresponding section.
      */
     EXPLICIT,
 
     /**
-     * Weights are Euclidean distances in 2-D
+     * Weights are Euclidean distances in 2-D.
      */
     EUC_2D,
 
     /**
-     * Weights are maximum distances in 2-D
+     * Weights are maximum distances in 2-D.
      */
     MAX_2D,
 
     /**
-     * Weights are Manhattan distances in 2-D
+     * Weights are Manhattan distances in 2-D.
      */
     MAN_2D,
 
     /**
-     * Weights are Euclidean distances in 2-D rounded up
+     * Weights are Euclidean distances in 2-D rounded up.
      */
     CEIL_2D,
 
     /**
-     * Weights are geographical distances
+     * Weights are geographical distances.
      */
-    GEO;
+    GEO,
+
+    /**
+     * Special distance function for problems att48 and att532.
+     */
+    ATT;
 
 }
