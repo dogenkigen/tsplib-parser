@@ -1,7 +1,8 @@
-package com.mlaskows.tsplib.stateparser;
+package com.mlaskows.tsplib.stateparser.states;
 
 import com.mlaskows.tsplib.datamodel.Node;
 import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 /**
  * Created by mlaskows on 21/04/2017.

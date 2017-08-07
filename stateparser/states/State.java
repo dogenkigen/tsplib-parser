@@ -1,7 +1,10 @@
-package com.mlaskows.tsplib.stateparser;
+package com.mlaskows.tsplib.stateparser.states;
 
 import com.mlaskows.tsplib.datamodel.TspBuilder;
 import com.mlaskows.tsplib.exception.TspLibException;
+import com.mlaskows.tsplib.stateparser.Keyword;
+import com.mlaskows.tsplib.stateparser.KeywordAndValue;
+import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 import java.util.stream.Stream;
 
@@ -10,7 +13,7 @@ import java.util.stream.Stream;
  *
  * @author Maciej Laskowski
  */
-interface State {
+public interface State {
 
     void consumeLine(ParsingContext context, String line, TspBuilder builder);
 

@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.types;
+package com.mlaskows.tsplib.datamodel.types;
 
 /**
  * Specifies how graphical display of nodes can be obtained.

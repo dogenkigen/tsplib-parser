@@ -19,7 +19,7 @@ public enum Keyword {
 
     /**
      * Specifies the type of data. Possible types are in
-     * {@link com.mlaskows.tsplib.types.Type}
+     * {@link com.mlaskows.tsplib.datamodel.types.Type}
      */
     TYPE,
 
@@ -36,13 +36,13 @@ public enum Keyword {
 
     /**
      * Specifies how the edge weights (or distances) are given. Possible
-     * types are in {@link com.mlaskows.tsplib.types.EdgeWeightType}.
+     * types are in {@link com.mlaskows.tsplib.datamodel.types.EdgeWeightType}.
      */
     EDGE_WEIGHT_TYPE,
 
     /**
      * Specifies how a graphical display of nodes can be obtained. Possible
-     * values are in {@link com.mlaskows.tsplib.types.DisplayDataType}.
+     * values are in {@link com.mlaskows.tsplib.datamodel.types.DisplayDataType}.
      */
     DISPLAY_DATA_TYPE,
 

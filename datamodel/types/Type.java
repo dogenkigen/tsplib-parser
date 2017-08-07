@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.types;
+package com.mlaskows.tsplib.datamodel.types;
 
 /**
  * A type of TSPLIB file.

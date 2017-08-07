@@ -1,6 +1,8 @@
 package com.mlaskows.tsplib.stateparser;
 
 import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.stateparser.states.SpecificationState;
+import com.mlaskows.tsplib.stateparser.states.State;
 
 /**
  * A context of the parser.
@@ -19,7 +21,7 @@ public class ParsingContext {
      *
      * @param newState the new state of this context
      */
-    void setState(final State newState) {
+    public void setState(final State newState) {
         state = newState;
     }
 

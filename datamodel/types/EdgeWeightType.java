@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.types;
+package com.mlaskows.tsplib.datamodel.types;
 
 /**
  * This class contains all types of edge weights or distances.

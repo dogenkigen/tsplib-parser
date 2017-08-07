@@ -1,9 +1,12 @@
-package com.mlaskows.tsplib.stateparser;
+package com.mlaskows.tsplib.stateparser.states;
 
 import com.mlaskows.tsplib.datamodel.TspBuilder;
-import com.mlaskows.tsplib.types.DisplayDataType;
-import com.mlaskows.tsplib.types.EdgeWeightType;
-import com.mlaskows.tsplib.types.Type;
+import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
+import com.mlaskows.tsplib.datamodel.types.Type;
+import com.mlaskows.tsplib.stateparser.Keyword;
+import com.mlaskows.tsplib.stateparser.KeywordAndValue;
+import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 /**
  * Created by mlaskows on 21/04/2017.
