@@ -87,15 +87,8 @@ public class DistanceCalculationMethodFactory {
             final double yd = i.getY() - j.getY();
             final double rij = Math.sqrt((xd * xd + yd * yd) / 10.0);
             final double tij = cutDecimal(rij);
-            final int dij;
 
-            if (tij < rij) {
-                dij = (int) tij + 1;
-            } else {
-                dij = (int) tij;
-            }
-
-            return dij;
+            return (int) (tij < rij ? tij + 1 : tij);
         };
     }
 
