@@ -3,7 +3,10 @@ package com.mlaskows.tsplib.stateparser;
 import com.mlaskows.tsplib.datamodel.TspBuilder;
 
 /**
- * Created by mlaskows on 17/06/2017.
+ * A state which terminates parsing. Parser will get to this state when EOF
+ * keyword occurs.
+ *
+ * @author Maciej Laskowski
  */
 public class TerminationState implements State {
 

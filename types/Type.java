@@ -1,7 +1,9 @@
 package com.mlaskows.tsplib.types;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * A type of TSPLIB file.
+ *
+ * @author Maciej Laskowski
  */
 public enum Type {
 

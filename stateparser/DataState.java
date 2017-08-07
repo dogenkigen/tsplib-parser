@@ -22,7 +22,7 @@ public interface DataState extends State {
      *          and 3 values
      * @return array of 3 values represented as {@link String}
      */
-    default  String[] getSplitted(String s) {
+    default  String[] getValuesArray(String s) {
         return s.trim().split("\\s+");
     }
 

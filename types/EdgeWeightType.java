@@ -1,7 +1,9 @@
 package com.mlaskows.tsplib.types;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * This class contains all types of edge weights or distances.
+ *
+ * @author Maciej Laskowski
  */
 public enum EdgeWeightType {
 

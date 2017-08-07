@@ -1,9 +1,9 @@
 package com.mlaskows.tsplib.types;
 
 /**
- * Created by mlaskows on 17/06/2017.
- *
  * Specifies how graphical display of nodes can be obtained.
+ *
+ * @author Maciej Laskowski
  */
 public enum DisplayDataType {
 

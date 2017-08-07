@@ -11,7 +11,6 @@ public class TspBuilder {
     private String name;
     private Type type;
     private int dimension;
-    private int capacity;
     private StringBuilder comment = new StringBuilder();
     private EdgeWeightType edgeWeightType;
     private DisplayDataType displayDataType;
@@ -37,11 +36,6 @@ public class TspBuilder {
         return this;
     }
 
-    public TspBuilder withCapacity(int capacity) {
-        this.capacity = capacity;
-        return this;
-    }
-
     public TspBuilder withComment(String comment) {
         this.comment.append(comment);
         return this;
@@ -61,7 +55,7 @@ public class TspBuilder {
     }
 
     public Tsp build() {
-        return new Tsp(name, type, edgeWeightType, dimension, capacity,
+        return new Tsp(name, type, edgeWeightType, dimension,
                 comment.toString(), displayDataType, nodes);
     }
 }

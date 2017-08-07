@@ -14,7 +14,7 @@ public class CoordinatesDataState implements DataState {
         if (stateChanged(context, line)) {
             return;
         }
-        Node node = mapToNode(getSplitted(line));
+        Node node = mapToNode(getValuesArray(line));
         builder.addNode(node);
     }
 
