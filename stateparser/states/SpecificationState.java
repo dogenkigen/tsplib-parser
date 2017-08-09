@@ -43,7 +43,7 @@ public class SpecificationState implements State {
                 builder.withComment(keywordAndValue.getValue());
                 break;
             case DIMENSION:
-                builder.withDimension(Integer.valueOf(keywordAndValue
+                builder.withDimension(Integer.parseInt(keywordAndValue
                         .getValue()));
                 break;
             case EDGE_WEIGHT_TYPE:

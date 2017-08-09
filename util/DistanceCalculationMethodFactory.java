@@ -34,11 +34,13 @@ public class DistanceCalculationMethodFactory {
     }
 
     private static BiFunction<Node, Node, Integer> getEuc2dFunction() {
-        return (i, j) -> {
-            final double xd = i.getX() - j.getX();
-            final double yd = i.getY() - j.getY();
-            return (int) (Math.sqrt(xd * xd + yd * yd) + 0.5);
-        };
+        return (i, j) -> (int) calculateEuc2d(i, j);
+    }
+
+    private static double calculateEuc2d(Node i, Node j) {
+        final double xd = i.getX() - j.getX();
+        final double yd = i.getY() - j.getY();
+        return Math.sqrt(xd * xd + yd * yd) + 0.5;
     }
 
     private static BiFunction<Node, Node, Integer> getGeoFunction() {
@@ -78,7 +80,7 @@ public class DistanceCalculationMethodFactory {
     }
 
     private static BiFunction<Node, Node, Integer> getCeil2dFunction() {
-        return (i, j) -> (int) Math.ceil(getEuc2dFunction().apply(i, j));
+        return (i, j) -> (int) Math.ceil(calculateEuc2d(i, j));
     }
 
     private static BiFunction<Node, Node, Integer> getAttFunction() {
