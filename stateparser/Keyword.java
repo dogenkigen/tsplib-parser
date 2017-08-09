@@ -1,5 +1,9 @@
 package com.mlaskows.tsplib.stateparser;
 
+import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
+import com.mlaskows.tsplib.datamodel.types.Type;
+
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -19,7 +23,7 @@ public enum Keyword {
 
     /**
      * Specifies the type of data. Possible types are in
-     * {@link com.mlaskows.tsplib.datamodel.types.Type}
+     * {@link Type}
      */
     TYPE,
 
@@ -36,13 +40,13 @@ public enum Keyword {
 
     /**
      * Specifies how the edge weights (or distances) are given. Possible
-     * types are in {@link com.mlaskows.tsplib.datamodel.types.EdgeWeightType}.
+     * types are in {@link EdgeWeightType}.
      */
     EDGE_WEIGHT_TYPE,
 
     /**
      * Specifies how a graphical display of nodes can be obtained. Possible
-     * values are in {@link com.mlaskows.tsplib.datamodel.types.DisplayDataType}.
+     * values are in {@link DisplayDataType}.
      */
     DISPLAY_DATA_TYPE,
 
