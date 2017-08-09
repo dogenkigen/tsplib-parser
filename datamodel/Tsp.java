@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Created by mlaskows on 21/04/2017.
  */
-//TODO add info about thread safety everywhere
 public final class Tsp {
     // TODO consider refactor for Optionals
     private final String name;
@@ -17,7 +16,6 @@ public final class Tsp {
     private final EdgeWeightType edgeWeightType;
     private final int dimension;
     private final String comment;
-    // TODO use immutable collections
     private final List<Node> nodes;
     private final DisplayDataType displayDataType;
 
