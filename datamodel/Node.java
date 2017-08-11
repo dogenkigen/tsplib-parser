@@ -5,25 +5,25 @@ package com.mlaskows.tsplib.datamodel;
  */
 public class Node {
 
-    private final Integer id;
-    private final Double y;
-    private final Double x;
+    private final int id;
+    private final double y;
+    private final double x;
 
-    public Node(Integer id, Double y, Double x) {
+    public Node(int id, double y, double x) {
         this.id = id;
         this.y = y;
         this.x = x;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public Double getY() {
+    public double getY() {
         return y;
     }
 
-    public Double getX() {
+    public double getX() {
         return x;
     }
 
@@ -34,11 +34,21 @@ public class Node {
 
         Node node = (Node) o;
 
-        return id != null ? id.equals(node.id) : node.id == null;
+        if (id != node.id) return false;
+        if (Double.compare(node.y, y) != 0) return false;
+        return Double.compare(node.x, x) == 0;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result;
+        long temp;
+        result = id;
+        temp = Double.doubleToLongBits(y);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(x);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
+
 }

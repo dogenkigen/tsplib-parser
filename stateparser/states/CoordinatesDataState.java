@@ -20,7 +20,7 @@ public class CoordinatesDataState implements DataState {
     }
 
     private Node mapToNode(String[] values) {
-        return new Node(Integer.valueOf(values[0]), Double.valueOf(values[1]),
-                Double.valueOf(values[2]));
+        return new Node(Integer.parseInt(values[0]), Double.parseDouble(values[1]),
+                Double.parseDouble(values[2]));
     }
 }
