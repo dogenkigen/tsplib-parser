@@ -1,6 +1,7 @@
 package com.mlaskows.tsplib.datamodel;
 
 import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import com.mlaskows.tsplib.datamodel.types.Type;
 
@@ -14,17 +15,19 @@ public final class Tsp {
     private final String name;
     private final Type type;
     private final EdgeWeightType edgeWeightType;
+    private final EdgeWeightFormat edgeWeightFormat;
     private final int dimension;
     private final String comment;
     private final List<Node> nodes;
     private final DisplayDataType displayDataType;
 
     public Tsp(String name, Type type, EdgeWeightType edgeWeightType,
-               int dimension, String comment,
+               EdgeWeightFormat edgeWeightFormat, int dimension, String comment,
                DisplayDataType displayDataType, List<Node> nodes) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
+        this.edgeWeightFormat = edgeWeightFormat;
         this.dimension = dimension;
         this.comment = comment;
         this.nodes = nodes;
@@ -41,6 +44,10 @@ public final class Tsp {
 
     public EdgeWeightType getEdgeWeightType() {
         return edgeWeightType;
+    }
+
+    public EdgeWeightFormat getEdgeWeightFormat() {
+        return edgeWeightFormat;
     }
 
     public int getDimension() {

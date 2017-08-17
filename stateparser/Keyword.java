@@ -1,6 +1,7 @@
 package com.mlaskows.tsplib.stateparser;
 
 import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import com.mlaskows.tsplib.datamodel.types.Type;
 
@@ -45,6 +46,12 @@ public enum Keyword {
     EDGE_WEIGHT_TYPE,
 
     /**
+     * Describes the format of the edge weights if they are given explicitly.
+     * Possible values are in {@link EdgeWeightFormat}.
+     */
+    EDGE_WEIGHT_FORMAT,
+
+    /**
      * Specifies how a graphical display of nodes can be obtained. Possible
      * values are in {@link DisplayDataType}.
      */
@@ -67,17 +74,9 @@ public enum Keyword {
      */
     EOF;
 
-    private static final Set<Keyword> specificationKeywords =
-            EnumSet.of(NAME, TYPE, COMMENT, DIMENSION, EDGE_WEIGHT_TYPE,
-                    DISPLAY_DATA_TYPE);
-
     private static final Set<Keyword> dataKeywords =
             EnumSet.of(NODE_COORD_SECTION, EDGE_DATA_SECTION,
                     EDGE_WEIGHT_SECTION);
-
-    public static boolean isSpecificationKeyword(Keyword keyword) {
-        return specificationKeywords.contains(keyword);
-    }
 
     /**
      * Returns true if the keyword is data keyword.

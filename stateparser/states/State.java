@@ -28,7 +28,12 @@ public interface State {
         Keyword keyword = Keyword.valueOf(split[0].trim());
         String value = null;
         if (split.length > 1) {
-            value = split[1].trim();
+            final String trimmed = split[1].trim();
+            if (trimmed.contains(" ")) {
+                value = trimmed.split(" ")[0];
+            } else {
+                value = trimmed;
+            }
         }
         return new KeywordAndValue(keyword, value);
     }

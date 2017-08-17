@@ -2,6 +2,7 @@ package com.mlaskows.tsplib.stateparser.states;
 
 import com.mlaskows.tsplib.datamodel.TspBuilder;
 import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import com.mlaskows.tsplib.datamodel.types.Type;
 import com.mlaskows.tsplib.stateparser.Keyword;
@@ -29,7 +30,6 @@ public class SpecificationState implements State {
 
     }
 
-
     private static void addToBuilder(KeywordAndValue keywordAndValue, TspBuilder builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
@@ -52,6 +52,10 @@ public class SpecificationState implements State {
                 break;
             case DISPLAY_DATA_TYPE:
                 builder.withDisplayDataType(DisplayDataType.valueOf
+                        (keywordAndValue.getValue()));
+                break;
+            case EDGE_WEIGHT_FORMAT:
+                builder.withEdgeWeightFormat(EdgeWeightFormat.valueOf
                         (keywordAndValue.getValue()));
                 break;
             default:
