@@ -56,10 +56,13 @@ public interface State {
      * @return parser {@link State} for a specified keyword
      */
     default State getState(Keyword keyword) {
-        State newState;
+        final State newState;
         switch (keyword) {
             case NODE_COORD_SECTION:
                 newState = new CoordinatesDataState();
+                break;
+            case EDGE_WEIGHT_SECTION:
+                newState = new EdgeWeightDataState();
                 break;
             case EOF:
                 newState = new TerminationState();

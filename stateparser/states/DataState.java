@@ -19,13 +19,13 @@ public interface DataState extends State {
 
     /**
      * Takes as a param {@link String} with not known number of whitespaces
-     * and 3 values. Returns array of 3 values represented as {@link String}
+     * and values. Returns array of values represented as {@link String}
      *
      * @param s {@link String} with not known number of whitespaces
-     *          and 3 values
-     * @return array of 3 values represented as {@link String}
+     *          and values
+     * @return array of values represented as {@link String}
      */
-    default  String[] getValuesArray(String s) {
+    default String[] getValuesArray(String s) {
         return s.trim().split("\\s+");
     }
 

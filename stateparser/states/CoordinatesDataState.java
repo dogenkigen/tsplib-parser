@@ -23,4 +23,5 @@ public class CoordinatesDataState implements DataState {
         return new Node(Integer.parseInt(values[0]), Double.parseDouble(values[1]),
                 Double.parseDouble(values[2]));
     }
+
 }

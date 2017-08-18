@@ -6,6 +6,7 @@ import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import com.mlaskows.tsplib.datamodel.types.Type;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by mlaskows on 21/04/2017.
@@ -18,12 +19,14 @@ public final class Tsp {
     private final EdgeWeightFormat edgeWeightFormat;
     private final int dimension;
     private final String comment;
-    private final List<Node> nodes;
     private final DisplayDataType displayDataType;
+    private final List<Node> nodes;
+    private final Optional<int[][]> edgeWeightData;
 
     public Tsp(String name, Type type, EdgeWeightType edgeWeightType,
                EdgeWeightFormat edgeWeightFormat, int dimension, String comment,
-               DisplayDataType displayDataType, List<Node> nodes) {
+               DisplayDataType displayDataType, List<Node> nodes,
+               Optional<int[][]> edgeWeightData) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
@@ -32,6 +35,7 @@ public final class Tsp {
         this.comment = comment;
         this.nodes = nodes;
         this.displayDataType = displayDataType;
+        this.edgeWeightData = edgeWeightData;
     }
 
     public String getName() {
@@ -64,5 +68,9 @@ public final class Tsp {
 
     public List<Node> getNodes() {
         return nodes;
+    }
+
+    public Optional<int[][]> getEdgeWeightData() {
+        return edgeWeightData;
     }
 }
