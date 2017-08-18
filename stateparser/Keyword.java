@@ -61,13 +61,27 @@ public enum Keyword {
 
     /**
      * Node coordinates are given in this section. Each line is of the form
-     * integer double double
+     * {@code int} {@code double} {@code double}
      */
     NODE_COORD_SECTION,
 
-
-    EDGE_DATA_SECTION,
+    /**
+     * The edge weights are given in specified format
+     * {@link EdgeWeightFormat}. At present all explicit data is integral and
+     * it's given in one of the (self-explanatory) matrix formats, with
+     * implicitly known lengths.
+     */
     EDGE_WEIGHT_SECTION,
+
+    /**
+     * If it's {@code DisplayDataType.TWOD_DISPLAY}, the 2-dimensional
+     * coordinates form which a display can be generated are given in the
+     * form (per line)
+     * {@code int} {@code double} {@code double}
+     * The integers specify the respective nodes and the doubles give the
+     * associated coordinates.
+     */
+    DISPLAY_DATA_SECTION,
 
     /**
      * Terminates the input data. This entry is optional.
@@ -75,8 +89,8 @@ public enum Keyword {
     EOF;
 
     private static final Set<Keyword> dataKeywords =
-            EnumSet.of(NODE_COORD_SECTION, EDGE_DATA_SECTION,
-                    EDGE_WEIGHT_SECTION);
+            EnumSet.of(NODE_COORD_SECTION, EDGE_WEIGHT_SECTION,
+                    DISPLAY_DATA_SECTION);
 
     /**
      * Returns true if the keyword is data keyword.

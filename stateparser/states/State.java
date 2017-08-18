@@ -59,6 +59,7 @@ public interface State {
         final State newState;
         switch (keyword) {
             case NODE_COORD_SECTION:
+            case DISPLAY_DATA_SECTION:
                 newState = new CoordinatesDataState();
                 break;
             case EDGE_WEIGHT_SECTION:
