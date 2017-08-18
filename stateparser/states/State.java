@@ -29,7 +29,7 @@ public interface State {
         String value = null;
         if (split.length > 1) {
             final String trimmed = split[1].trim();
-            if (trimmed.contains(" ")) {
+            if (Keyword.TYPE.equals(keyword) && trimmed.contains(" ")) {
                 value = trimmed.split(" ")[0];
             } else {
                 value = trimmed;

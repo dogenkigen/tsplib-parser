@@ -20,22 +20,22 @@ public final class Tsp {
     private final int dimension;
     private final String comment;
     private final DisplayDataType displayDataType;
-    private final List<Node> nodes;
+    private final Optional<List<Node>> nodes;
     private final Optional<int[][]> edgeWeightData;
 
     public Tsp(String name, Type type, EdgeWeightType edgeWeightType,
                EdgeWeightFormat edgeWeightFormat, int dimension, String comment,
                DisplayDataType displayDataType, List<Node> nodes,
-               Optional<int[][]> edgeWeightData) {
+               int[][] edgeWeightData) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
         this.edgeWeightFormat = edgeWeightFormat;
         this.dimension = dimension;
         this.comment = comment;
-        this.nodes = nodes;
+        this.nodes = Optional.ofNullable(nodes);
         this.displayDataType = displayDataType;
-        this.edgeWeightData = edgeWeightData;
+        this.edgeWeightData = Optional.ofNullable(edgeWeightData);
     }
 
     public String getName() {
@@ -66,7 +66,7 @@ public final class Tsp {
         return displayDataType;
     }
 
-    public List<Node> getNodes() {
+    public Optional<List<Node>> getNodes() {
         return nodes;
     }
 

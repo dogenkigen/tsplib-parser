@@ -8,7 +8,6 @@ import com.mlaskows.tsplib.exception.TspLibException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class TspBuilder {
     private String name;
@@ -93,6 +92,6 @@ public class TspBuilder {
     public Tsp build() {
         return new Tsp(name, type, edgeWeightType, edgeWeightFormat, dimension,
                 comment.toString(), displayDataType, nodes,
-                Optional.ofNullable(edgeWeightData));
+                edgeWeightData);
     }
 }
