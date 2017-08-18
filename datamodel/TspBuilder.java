@@ -19,6 +19,8 @@ public class TspBuilder {
     private DisplayDataType displayDataType;
     private List<Node> nodes;
     private int[][] edgeWeightData;
+    private int lastEdgeWeightDataEmptyRowIndex;
+    private int fillIndex;
 
     public TspBuilder withName(String name) {
         this.name = name;
@@ -69,29 +71,52 @@ public class TspBuilder {
         }
         switch (edgeWeightFormat) {
             case FULL_MATRIX:
-                final int index = getLastEdgeWeightDataEmptyRowIndex();
-                edgeWeightData[index] = data;
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex] = data;
+                lastEdgeWeightDataEmptyRowIndex++;
+                break;
+            case LOWER_ROW:
+            case LOWER_DIAG_ROW:
+                putInEdgeWeightDataLower(data);
                 break;
             default:
-                throw new TspLibException("Can't parse for edge weight format"
+                throw new TspLibException("Can't parse for edge weight format "
                         + edgeWeightFormat);
         }
         return this;
     }
 
-    private int getLastEdgeWeightDataEmptyRowIndex() {
-        for (int i = 0; i < edgeWeightData.length; i++) {
-            if (edgeWeightData[i][0] == 0
-                    && edgeWeightData[i][edgeWeightData.length - 1] == 0) {
-                return i;
+    private void putInEdgeWeightDataLower(int[] data) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == 0) {
+                lastEdgeWeightDataEmptyRowIndex++;
+                fillIndex = 0;
+            } else {
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] = data[i];
+                fillIndex++;
             }
         }
-        throw new TspLibException("Can't find empty index");
     }
 
     public Tsp build() {
+        if (edgeWeightData != null
+                && !EdgeWeightFormat.FULL_MATRIX.equals(edgeWeightFormat)) {
+            // This means there is upper or lower triangular matrix so it
+            // needs to be filled in symmetrical way
+            fillInvertedValues();
+        }
         return new Tsp(name, type, edgeWeightType, edgeWeightFormat, dimension,
                 comment.toString(), displayDataType, nodes,
                 edgeWeightData);
     }
+
+    private void fillInvertedValues() {
+        for (int i = 0; i < edgeWeightData.length; i++) {
+            for (int j = 0; j < edgeWeightData.length; j++) {
+                if (edgeWeightData[i][j] != 0) {
+                    edgeWeightData[j][i] = edgeWeightData[i][j];
+                }
+            }
+        }
+    }
+    
 }
