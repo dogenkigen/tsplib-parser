@@ -68,15 +68,26 @@ public class TspBuilder {
     public TspBuilder addEdgeWeightData(int[] data) {
         if (edgeWeightData == null) {
             edgeWeightData = new int[dimension][dimension];
+            if (EdgeWeightFormat.UPPER_DIAG_ROW.equals(edgeWeightFormat)) {
+                lastEdgeWeightDataEmptyRowIndex = -1;
+            }
         }
         switch (edgeWeightFormat) {
             case FULL_MATRIX:
                 edgeWeightData[lastEdgeWeightDataEmptyRowIndex] = data;
                 lastEdgeWeightDataEmptyRowIndex++;
                 break;
+            case UPPER_ROW:
+                putinEdgeWeightData(data, lastEdgeWeightDataEmptyRowIndex + 1);
+                break;
             case LOWER_ROW:
+                putinEdgeWeightData(data, 0);
+                break;
             case LOWER_DIAG_ROW:
-                putInEdgeWeightDataLower(data);
+                putInEdgeWeightDataLowerDiag(data);
+                break;
+            case UPPER_DIAG_ROW:
+                putInEdgeWeightDataUpperDiag(data);
                 break;
             default:
                 throw new TspLibException("Can't parse for edge weight format "
@@ -85,13 +96,37 @@ public class TspBuilder {
         return this;
     }
 
-    private void putInEdgeWeightDataLower(int[] data) {
+    private void putinEdgeWeightData(int[] data, int initialFillIndex) {
+        fillIndex = initialFillIndex;
+        for (int i = 0; i < data.length; i++) {
+            edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
+                    data[i];
+            fillIndex++;
+        }
+        lastEdgeWeightDataEmptyRowIndex++;
+    }
+
+    private void putInEdgeWeightDataLowerDiag(int[] data) {
         for (int i = 0; i < data.length; i++) {
             if (data[i] == 0) {
                 lastEdgeWeightDataEmptyRowIndex++;
                 fillIndex = 0;
             } else {
-                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] = data[i];
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
+                        data[i];
+                fillIndex++;
+            }
+        }
+    }
+
+    private void putInEdgeWeightDataUpperDiag(int[] data) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == 0) {
+                lastEdgeWeightDataEmptyRowIndex++;
+                fillIndex = lastEdgeWeightDataEmptyRowIndex + 1;
+            } else {
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
+                        data[i];
                 fillIndex++;
             }
         }
@@ -99,9 +134,7 @@ public class TspBuilder {
 
     public Tsp build() {
         if (edgeWeightData != null
-                && !EdgeWeightFormat.FULL_MATRIX.equals(edgeWeightFormat)) {
-            // This means there is upper or lower triangular matrix so it
-            // needs to be filled in symmetrical way
+                && EdgeWeightFormat.isTriangular(edgeWeightFormat)) {
             fillInvertedValues();
         }
         return new Tsp(name, type, edgeWeightType, edgeWeightFormat, dimension,
@@ -118,5 +151,5 @@ public class TspBuilder {
             }
         }
     }
-    
+
 }

@@ -88,7 +88,7 @@ public enum Keyword {
      */
     EOF;
 
-    private static final Set<Keyword> dataKeywords =
+    private static final Set<Keyword> DATA_KEYWORDS =
             EnumSet.of(NODE_COORD_SECTION, EDGE_WEIGHT_SECTION,
                     DISPLAY_DATA_SECTION);
 
@@ -99,7 +99,7 @@ public enum Keyword {
      * @return true if the keyword is data keyword
      */
     public static boolean isDataKeyword(Keyword keyword) {
-        return dataKeywords.contains(keyword);
+        return DATA_KEYWORDS.contains(keyword);
     }
 
 }
