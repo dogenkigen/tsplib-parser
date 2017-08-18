@@ -1,9 +1,6 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
-import com.mlaskows.tsplib.datamodel.types.Type;
+import com.mlaskows.tsplib.datamodel.types.*;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -56,6 +53,13 @@ public enum Keyword {
      * values are in {@link DisplayDataType}.
      */
     DISPLAY_DATA_TYPE,
+
+    /**
+     * Specifies whether coordinates are associated with each node (which,
+     * for example may be used for either graphical display or distance
+     * computations). The values are in {@link NodeCoordType}
+     */
+    NODE_COORD_TYPE,
 
     // Data part
 

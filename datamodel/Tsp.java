@@ -1,9 +1,6 @@
 package com.mlaskows.tsplib.datamodel;
 
-import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
-import com.mlaskows.tsplib.datamodel.types.Type;
+import com.mlaskows.tsplib.datamodel.types.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +9,7 @@ import java.util.Optional;
  * Created by mlaskows on 21/04/2017.
  */
 public final class Tsp {
-    // TODO consider refactor for Optionals
+
     private final String name;
     private final Type type;
     private final EdgeWeightType edgeWeightType;
@@ -20,13 +17,14 @@ public final class Tsp {
     private final int dimension;
     private final String comment;
     private final DisplayDataType displayDataType;
+    private final NodeCoordType nodeCoordType;
     private final Optional<List<Node>> nodes;
     private final Optional<int[][]> edgeWeightData;
 
     public Tsp(String name, Type type, EdgeWeightType edgeWeightType,
                EdgeWeightFormat edgeWeightFormat, int dimension, String comment,
-               DisplayDataType displayDataType, List<Node> nodes,
-               int[][] edgeWeightData) {
+               DisplayDataType displayDataType, NodeCoordType nodeCoordType,
+               List<Node> nodes, int[][] edgeWeightData) {
         this.name = name;
         this.type = type;
         this.edgeWeightType = edgeWeightType;
@@ -35,6 +33,7 @@ public final class Tsp {
         this.comment = comment;
         this.nodes = Optional.ofNullable(nodes);
         this.displayDataType = displayDataType;
+        this.nodeCoordType = nodeCoordType;
         this.edgeWeightData = Optional.ofNullable(edgeWeightData);
     }
 
@@ -64,6 +63,10 @@ public final class Tsp {
 
     public DisplayDataType getDisplayDataType() {
         return displayDataType;
+    }
+
+    public NodeCoordType getNodeCoordType() {
+        return nodeCoordType;
     }
 
     public Optional<List<Node>> getNodes() {

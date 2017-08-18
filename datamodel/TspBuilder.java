@@ -1,9 +1,6 @@
 package com.mlaskows.tsplib.datamodel;
 
-import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
-import com.mlaskows.tsplib.datamodel.types.Type;
+import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.exception.TspLibException;
 
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ public class TspBuilder {
     private EdgeWeightType edgeWeightType;
     private EdgeWeightFormat edgeWeightFormat;
     private DisplayDataType displayDataType;
+    private NodeCoordType nodeCoordType;
     private List<Node> nodes;
     private int[][] edgeWeightData;
     private int lastEdgeWeightDataEmptyRowIndex;
@@ -54,6 +52,11 @@ public class TspBuilder {
 
     public TspBuilder withDisplayDataType(DisplayDataType displayDataType) {
         this.displayDataType = displayDataType;
+        return this;
+    }
+
+    public TspBuilder withNodeCoordType(NodeCoordType nodeCoordType) {
+        this.nodeCoordType = nodeCoordType;
         return this;
     }
 
@@ -138,7 +141,7 @@ public class TspBuilder {
             fillInvertedValues();
         }
         return new Tsp(name, type, edgeWeightType, edgeWeightFormat, dimension,
-                comment.toString(), displayDataType, nodes,
+                comment.toString(), displayDataType, nodeCoordType, nodes,
                 edgeWeightData);
     }
 

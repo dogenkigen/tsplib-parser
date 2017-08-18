@@ -1,10 +1,7 @@
 package com.mlaskows.tsplib.stateparser.states;
 
 import com.mlaskows.tsplib.datamodel.TspBuilder;
-import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
-import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
-import com.mlaskows.tsplib.datamodel.types.Type;
+import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
@@ -56,6 +53,10 @@ public class SpecificationState implements State {
                 break;
             case EDGE_WEIGHT_FORMAT:
                 builder.withEdgeWeightFormat(EdgeWeightFormat.valueOf
+                        (keywordAndValue.getValue()));
+                break;
+            case NODE_COORD_TYPE:
+                builder.withNodeCoordType(NodeCoordType.valueOf
                         (keywordAndValue.getValue()));
                 break;
             default:
