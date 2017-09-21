@@ -96,7 +96,7 @@ public class DistanceCalculationMethodFactory {
         };
     }
 
-    public static BiFunction<Node, Node, Integer> getMax2dFunction() {
+    private static BiFunction<Node, Node, Integer> getMax2dFunction() {
         return (i, j) -> {
             final double xd = Math.abs(i.getX() - j.getX());
             final double yd = Math.abs(i.getY() - j.getY());
