@@ -1,2 +1,3 @@
 # tsplib-parser
-Modern Java based TSPLIB parser
+Modern and simple to use Java based TSPLIB parser.
+
