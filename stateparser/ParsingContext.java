@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.states.SpecificationState;
 import com.mlaskows.tsplib.stateparser.states.State;
 
@@ -31,7 +31,7 @@ public class ParsingContext {
      * @param line a line to be consumed
      * @param builder
      */
-    public void consumeLine(final String line, TspBuilder builder) {
+    public void consumeLine(final String line, ItemBuilder builder) {
         state.consumeLine(this, line, builder);
     }
 }

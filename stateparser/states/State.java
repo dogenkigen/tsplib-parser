@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.exception.TspLibException;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  */
 public interface State {
 
-    void consumeLine(ParsingContext context, String line, TspBuilder builder);
+    void consumeLine(ParsingContext context, String line, ItemBuilder builder);
 
     /**
      * Extracts {@link KeywordAndValue} object from a TSPLIB file line.
@@ -64,6 +64,9 @@ public interface State {
                 break;
             case EDGE_WEIGHT_SECTION:
                 newState = new EdgeWeightDataState();
+                break;
+            case TOUR_SECTION:
+                newState = new TourDataState();
                 break;
             case EOF:
                 newState = new TerminationState();

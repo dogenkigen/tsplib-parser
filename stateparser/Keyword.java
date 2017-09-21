@@ -88,13 +88,21 @@ public enum Keyword {
     DISPLAY_DATA_SECTION,
 
     /**
+     * A collection of tours is specified in this section. Each tour is given
+     * by a list of integers giving the sequence in which the nodes are
+     * visited in this tour. Every such tour is terminated by a -1. An
+     * additional -1 terminates this section.
+     */
+    TOUR_SECTION,
+
+    /**
      * Terminates the input data. This entry is optional.
      */
     EOF;
 
     private static final Set<Keyword> DATA_KEYWORDS =
             EnumSet.of(NODE_COORD_SECTION, EDGE_WEIGHT_SECTION,
-                    DISPLAY_DATA_SECTION);
+                    DISPLAY_DATA_SECTION, TOUR_SECTION);
 
     /**
      * Returns true if the keyword is data keyword.

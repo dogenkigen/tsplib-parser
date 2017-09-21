@@ -6,7 +6,7 @@ import com.mlaskows.tsplib.exception.TspLibException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TspBuilder {
+public class ItemBuilder {
     private String name;
     private Type type;
     private int dimension;
@@ -16,51 +16,53 @@ public class TspBuilder {
     private DisplayDataType displayDataType;
     private NodeCoordType nodeCoordType;
     private List<Node> nodes;
+    private List<int[]> tours;
     private int[][] edgeWeightData;
+    private int lastTourEmptyIndex;
     private int lastEdgeWeightDataEmptyRowIndex;
     private int fillIndex;
 
-    public TspBuilder withName(String name) {
+    public ItemBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public TspBuilder withType(Type type) {
+    public ItemBuilder withType(Type type) {
         this.type = type;
         return this;
     }
 
-    public TspBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
+    public ItemBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
         this.edgeWeightType = edgeWeightType;
         return this;
     }
 
-    public TspBuilder withEdgeWeightFormat(EdgeWeightFormat edgeWeightFormat) {
+    public ItemBuilder withEdgeWeightFormat(EdgeWeightFormat edgeWeightFormat) {
         this.edgeWeightFormat = edgeWeightFormat;
         return this;
     }
 
-    public TspBuilder withDimension(int dimension) {
+    public ItemBuilder withDimension(int dimension) {
         this.dimension = dimension;
         return this;
     }
 
-    public TspBuilder withComment(String comment) {
+    public ItemBuilder withComment(String comment) {
         this.comment.append(comment);
         return this;
     }
 
-    public TspBuilder withDisplayDataType(DisplayDataType displayDataType) {
+    public ItemBuilder withDisplayDataType(DisplayDataType displayDataType) {
         this.displayDataType = displayDataType;
         return this;
     }
 
-    public TspBuilder withNodeCoordType(NodeCoordType nodeCoordType) {
+    public ItemBuilder withNodeCoordType(NodeCoordType nodeCoordType) {
         this.nodeCoordType = nodeCoordType;
         return this;
     }
 
-    public TspBuilder addNode(Node node) {
+    public ItemBuilder addNode(Node node) {
         if (nodes == null) {
             nodes = new ArrayList<>(dimension);
         }
@@ -68,7 +70,23 @@ public class TspBuilder {
         return this;
     }
 
-    public TspBuilder addEdgeWeightData(int[] data) {
+    public ItemBuilder addTourStep(int step) {
+        if (tours == null) {
+            tours = new ArrayList<>();
+        }
+        if (lastTourEmptyIndex == 0) {
+            tours.add(new int[dimension]);
+        }
+        tours.get(tours.size() - 1)[lastTourEmptyIndex] = step;
+        lastTourEmptyIndex++;
+        return this;
+    }
+
+    public void finishLastTour() {
+        lastTourEmptyIndex = 0;
+    }
+
+    public ItemBuilder addEdgeWeightData(int[] data) {
         if (edgeWeightData == null) {
             edgeWeightData = new int[dimension][dimension];
             if (EdgeWeightFormat.UPPER_DIAG_ROW.equals(edgeWeightFormat)) {
@@ -93,7 +111,7 @@ public class TspBuilder {
                 putInEdgeWeightDataUpperDiag(data);
                 break;
             default:
-                throw new TspLibException("Can't parse for edge weight format "
+                throw new TspLibException("Can't parseTsp for edge weight format "
                         + edgeWeightFormat);
         }
         return this;
@@ -135,7 +153,7 @@ public class TspBuilder {
         }
     }
 
-    public Tsp build() {
+    public Tsp buildTsp() {
         if (edgeWeightData != null
                 && EdgeWeightFormat.isTriangular(edgeWeightFormat)) {
             fillInvertedValues();
@@ -143,6 +161,10 @@ public class TspBuilder {
         return new Tsp(name, type, edgeWeightType, edgeWeightFormat, dimension,
                 comment.toString(), displayDataType, nodeCoordType, nodes,
                 edgeWeightData);
+    }
+
+    public Tour buildTour() {
+        return new Tour(name, type, dimension, comment.toString(), tours);
     }
 
     private void fillInvertedValues() {

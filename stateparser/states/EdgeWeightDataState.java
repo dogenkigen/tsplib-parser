@@ -1,12 +1,17 @@
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
+/**
+ * State of the parser to consume edge weight data.
+ *
+ * @author Maciej Laskowski
+ */
 public class EdgeWeightDataState implements DataState {
 
     @Override
-    public void consumeLine(ParsingContext context, String line, TspBuilder builder) {
+    public void consumeLine(ParsingContext context, String line, ItemBuilder builder) {
         if (stateChanged(context, line)) {
             return;
         }

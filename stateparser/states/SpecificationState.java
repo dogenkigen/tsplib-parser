@@ -1,20 +1,22 @@
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * State of the parser to consume specification of TSPLIB file.
+ *
+ * @author Maciej Laskowski
  */
 public class SpecificationState implements State {
 
     @Override
     public void consumeLine(final ParsingContext context,
                             final String line,
-                            TspBuilder builder) {
+                            ItemBuilder builder) {
 
         KeywordAndValue keywordAndValue = extractKeywordAndValue(line);
 
@@ -27,7 +29,7 @@ public class SpecificationState implements State {
 
     }
 
-    private static void addToBuilder(KeywordAndValue keywordAndValue, TspBuilder builder) {
+    private static void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
                 builder.withName(keywordAndValue.getValue());

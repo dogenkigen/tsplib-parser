@@ -1,7 +1,8 @@
 package com.mlaskows.tsplib;
 
+import com.mlaskows.tsplib.datamodel.Tour;
 import com.mlaskows.tsplib.datamodel.Tsp;
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 import java.io.IOException;
@@ -17,8 +18,16 @@ import java.util.stream.Stream;
  */
 public class TspLibParser {
 
-    public static Tsp parse(String pathToFile) throws IOException {
-        TspBuilder builder = new TspBuilder();
+    public static Tsp parseTsp(String pathToFile) throws IOException {
+        return getFilledItemBuilder(pathToFile).buildTsp();
+    }
+
+    public static Tour parseTour(String pathToFile) throws IOException {
+        return getFilledItemBuilder(pathToFile).buildTour();
+    }
+
+    private static ItemBuilder getFilledItemBuilder(String pathToFile) throws IOException {
+        ItemBuilder builder = new ItemBuilder();
         Stream<String> stream = Files.lines(Paths.get(pathToFile));
 
         List<String> lines = getNonEmptyTrimmedLines(stream);
@@ -27,8 +36,7 @@ public class TspLibParser {
         for (String line : lines) {
             context.consumeLine(line, builder);
         }
-
-        return builder.build();
+        return builder;
     }
 
     private static List<String> getNonEmptyTrimmedLines(Stream<String> stream) {

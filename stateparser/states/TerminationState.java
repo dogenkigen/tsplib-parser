@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.TspBuilder;
+import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 /**
@@ -12,7 +12,7 @@ import com.mlaskows.tsplib.stateparser.ParsingContext;
 public class TerminationState implements State {
 
     @Override
-    public void consumeLine(ParsingContext context, String line, TspBuilder builder) {
+    public void consumeLine(ParsingContext context, String line, ItemBuilder builder) {
         return;
     }
 }

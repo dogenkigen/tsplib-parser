@@ -4,7 +4,9 @@ import com.mlaskows.tsplib.stateparser.KeywordAndValue;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * Interface for state of the parser to consume data.
+ *
+ * @author Maciej Laskowski
  */
 public interface DataState extends State {
 
@@ -21,12 +23,12 @@ public interface DataState extends State {
      * Takes as a param {@link String} with not known number of whitespaces
      * and values. Returns array of values represented as {@link String}
      *
-     * @param s {@link String} with not known number of whitespaces
+     * @param line {@link String} with not known number of whitespaces
      *          and values
      * @return array of values represented as {@link String}
      */
-    default String[] getValuesArray(String s) {
-        return s.trim().split("\\s+");
+    default String[] getValuesArray(String line) {
+        return line.trim().split("\\s+");
     }
 
 }
