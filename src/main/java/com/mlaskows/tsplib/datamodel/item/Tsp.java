@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.datamodel;
+package com.mlaskows.tsplib.datamodel.item;
 
 import com.mlaskows.tsplib.datamodel.types.*;
 

@@ -1,4 +1,4 @@
-package com.mlaskows.tsplib.datamodel;
+package com.mlaskows.tsplib.datamodel.item;
 
 /**
  * Created by mlaskows on 21/04/2017.

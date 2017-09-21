@@ -1,7 +1,7 @@
 package com.mlaskows.tsplib.util;
 
 import com.mlaskows.tsplib.exception.TspLibException;
-import com.mlaskows.tsplib.datamodel.Node;
+import com.mlaskows.tsplib.datamodel.item.Node;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 
 import java.util.function.BiFunction;

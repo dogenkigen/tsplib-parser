@@ -1,9 +1,9 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.datamodel.Tour;
-import com.mlaskows.tsplib.datamodel.Tsp;
+import com.mlaskows.tsplib.datamodel.item.Tour;
+import com.mlaskows.tsplib.datamodel.item.Tsp;
+import com.mlaskows.tsplib.parser.TspLibParser;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 

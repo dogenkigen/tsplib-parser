@@ -1,6 +1,6 @@
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.Node;
+import com.mlaskows.tsplib.datamodel.item.Node;
 import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 

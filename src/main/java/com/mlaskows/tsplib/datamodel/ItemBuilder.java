@@ -1,5 +1,8 @@
 package com.mlaskows.tsplib.datamodel;
 
+import com.mlaskows.tsplib.datamodel.item.Node;
+import com.mlaskows.tsplib.datamodel.item.Tour;
+import com.mlaskows.tsplib.datamodel.item.Tsp;
 import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.exception.TspLibException;
 

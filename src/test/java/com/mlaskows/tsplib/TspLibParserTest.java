@@ -1,8 +1,9 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.datamodel.Tour;
-import com.mlaskows.tsplib.datamodel.Tsp;
+import com.mlaskows.tsplib.datamodel.item.Tour;
+import com.mlaskows.tsplib.datamodel.item.Tsp;
 import com.mlaskows.tsplib.datamodel.types.*;
+import com.mlaskows.tsplib.parser.TspLibParser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -1,7 +1,7 @@
-package com.mlaskows.tsplib;
+package com.mlaskows.tsplib.parser;
 
-import com.mlaskows.tsplib.datamodel.Tour;
-import com.mlaskows.tsplib.datamodel.Tsp;
+import com.mlaskows.tsplib.datamodel.item.Tour;
+import com.mlaskows.tsplib.datamodel.item.Tsp;
 import com.mlaskows.tsplib.datamodel.ItemBuilder;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
