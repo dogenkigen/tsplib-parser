@@ -7,7 +7,7 @@ import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import java.util.function.BiFunction;
 
 /**
- * Created by mlaskows on 22/04/2017.
+ * @author Maciej Laskowski
  */
 public class DistanceCalculationMethodFactory {
 

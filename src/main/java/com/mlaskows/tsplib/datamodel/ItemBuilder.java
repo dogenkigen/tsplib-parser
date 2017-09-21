@@ -9,7 +9,13 @@ import com.mlaskows.tsplib.exception.TspLibException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Builder used for creating representation of TSPLIB tsp or tour file.
+ *
+ * @author Maciej Laskowski
+ */
 public class ItemBuilder {
+
     private String name;
     private Type type;
     private int dimension;

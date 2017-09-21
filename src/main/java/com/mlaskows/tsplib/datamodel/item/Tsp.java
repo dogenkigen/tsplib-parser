@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * Representation of TSPLIB tsp file.
+ *
+ * @author Maciej Laskowski
  */
 public final class Tsp {
 

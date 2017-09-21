@@ -1,7 +1,9 @@
 package com.mlaskows.tsplib.datamodel.item;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * The class represents a node which contains it's ID and coordinates.
+ *
+ * @author Maciej Laskowski
  */
 public class Node {
 

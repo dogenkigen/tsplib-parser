@@ -4,6 +4,11 @@ import com.mlaskows.tsplib.datamodel.types.Type;
 
 import java.util.List;
 
+/**
+ * Representation of TSPLIB tour file.
+ *
+ * @author Maciej Laskowski
+ */
 public class Tour {
 
     private final String name;

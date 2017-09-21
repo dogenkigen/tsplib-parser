@@ -1,7 +1,9 @@
 package com.mlaskows.tsplib.exception;
 
 /**
- * Created by mlaskows on 21/04/2017.
+ * Exception thrown for parsing errors.
+ *
+ * @author Maciej Laskowski
  */
 public class TspLibException extends RuntimeException {
 
