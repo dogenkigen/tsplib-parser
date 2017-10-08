@@ -44,7 +44,7 @@ public class SpecificationState implements State {
 
     }
 
-    private static void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
+    private void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
                 builder.withName(keywordAndValue.getValue());
