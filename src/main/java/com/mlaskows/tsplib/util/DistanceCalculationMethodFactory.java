@@ -70,10 +70,10 @@ public class DistanceCalculationMethodFactory {
 
     private static BiFunction<Node, Node, Integer> getGeoFunction() {
         return (i, j) -> {
-            final double latitudeI = convertToRadians(i.getX());
-            final double longitudeI = convertToRadians(i.getY());
-            final double latitudeJ = convertToRadians(j.getX());
-            final double longitudeJ = convertToRadians(j.getY());
+            final double latitudeI = convertToRadians(i.getY());
+            final double longitudeI = convertToRadians(i.getX());
+            final double latitudeJ = convertToRadians(j.getY());
+            final double longitudeJ = convertToRadians(j.getX());
             final double q1 = Math.cos(longitudeI - longitudeJ);
             final double q2 = Math.cos(latitudeI - latitudeJ);
             final double q3 = Math.cos(latitudeI + latitudeJ);
