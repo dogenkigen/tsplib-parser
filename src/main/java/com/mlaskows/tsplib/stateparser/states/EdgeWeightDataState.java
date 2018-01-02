@@ -31,7 +31,7 @@ public class EdgeWeightDataState implements DataState {
             return;
         }
         final String[] valuesArray = getValuesArray(line);
-        builder.addEdgeWeightData(convertToInt(valuesArray));
+        builder.withEdgeWeightData(convertToInt(valuesArray));
     }
 
     private int[] convertToInt(String[] valuesArray) {

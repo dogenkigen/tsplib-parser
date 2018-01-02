@@ -110,7 +110,7 @@ public class ItemBuilder {
         lastTourEmptyIndex = 0;
     }
 
-    public ItemBuilder addEdgeWeightData(int[] data) {
+    public ItemBuilder withEdgeWeightData(int[] data) {
         if (edgeWeightData == null) {
             edgeWeightData = new int[dimension][dimension];
             if (EdgeWeightFormat.UPPER_DIAG_ROW.equals(edgeWeightFormat)) {

@@ -22,24 +22,23 @@ import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 import java.util.function.BiFunction;
 
 /**
- * This class provides distance methods for {@link EdgeWeightType}.
+ * This class provides edge weight calculation methods for {@link EdgeWeightType}.
  *
  * @author Maciej Laskowski
  */
-public class DistanceCalculationMethodFactory {
+public class EdgeWeightCalculationMethodFactory {
 
     private static final double EARTH_RADIUS = 6378.388;
 
     /**
-     * Returns {@link BiFunction} with distance calculation method for
+     * Returns {@link BiFunction} with edge weight calculation method for
      * specified {@link EdgeWeightType}.
      *
      * @param edgeWeightType type of edge weight
-     * @return {@link BiFunction} with distance calculation method for
+     * @return {@link BiFunction} with edge weight calculation method for
      * specified {@link EdgeWeightType}
      */
-    public static BiFunction<Node, Node, Integer>
-    getDistanceCalculationMethod(EdgeWeightType edgeWeightType) {
+    public static BiFunction<Node, Node, Integer> getEdgeWeightCalculationMethod(EdgeWeightType edgeWeightType) {
         switch (edgeWeightType) {
             case EUC_2D:
                 return getEuc2dFunction();
