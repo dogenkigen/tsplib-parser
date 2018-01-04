@@ -15,8 +15,8 @@
 
 package com.mlaskows.tsplib.util;
 
+import com.mlaskows.tsplib.datamodel.tsp.Tsp;
 import com.mlaskows.tsplib.exception.TspLibException;
-import com.mlaskows.tsplib.datamodel.item.Node;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
 
 import java.util.function.BiFunction;
@@ -38,7 +38,7 @@ public class EdgeWeightCalculationMethodFactory {
      * @return {@link BiFunction} with edge weight calculation method for
      * specified {@link EdgeWeightType}
      */
-    public static BiFunction<Node, Node, Integer> getEdgeWeightCalculationMethod(EdgeWeightType edgeWeightType) {
+    public static BiFunction<Tsp.Node, Tsp.Node, Integer> getEdgeWeightCalculationMethod(EdgeWeightType edgeWeightType) {
         switch (edgeWeightType) {
             case EUC_2D:
                 return getEuc2dFunction();
@@ -57,17 +57,17 @@ public class EdgeWeightCalculationMethodFactory {
         }
     }
 
-    private static BiFunction<Node, Node, Integer> getEuc2dFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getEuc2dFunction() {
         return (i, j) -> (int) calculateEuc2d(i, j);
     }
 
-    private static double calculateEuc2d(Node i, Node j) {
+    private static double calculateEuc2d(Tsp.Node i, Tsp.Node j) {
         final double xd = i.getX() - j.getX();
         final double yd = i.getY() - j.getY();
         return Math.sqrt(xd * xd + yd * yd) + 0.5;
     }
 
-    private static BiFunction<Node, Node, Integer> getGeoFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getGeoFunction() {
         return (i, j) -> {
             final double latitudeI = convertToRadians(i.getY());
             final double longitudeI = convertToRadians(i.getX());
@@ -87,7 +87,7 @@ public class EdgeWeightCalculationMethodFactory {
         return Math.PI * (deg + 0.5 * min / 3.0) / 180;
     }
 
-    private static BiFunction<Node, Node, Integer> getMan2dFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getMan2dFunction() {
         return (i, j) -> {
             final double xd = Math.abs(i.getX() - j.getX());
             final double yd = Math.abs(i.getY() - j.getY());
@@ -95,7 +95,7 @@ public class EdgeWeightCalculationMethodFactory {
         };
     }
 
-    private static BiFunction<Node, Node, Integer> getMax2dFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getMax2dFunction() {
         return (i, j) -> {
             final double xd = Math.abs(i.getX() - j.getX());
             final double yd = Math.abs(i.getY() - j.getY());
@@ -103,11 +103,11 @@ public class EdgeWeightCalculationMethodFactory {
         };
     }
 
-    private static BiFunction<Node, Node, Integer> getCeil2dFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getCeil2dFunction() {
         return (i, j) -> (int) Math.ceil(calculateEuc2d(i, j));
     }
 
-    private static BiFunction<Node, Node, Integer> getAttFunction() {
+    private static BiFunction<Tsp.Node, Tsp.Node, Integer> getAttFunction() {
         return (i, j) -> {
             final double xd = i.getX() - j.getX();
             final double yd = i.getY() - j.getY();

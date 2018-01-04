@@ -15,9 +15,9 @@
 
 package com.mlaskows.tsplib.parser;
 
-import com.mlaskows.tsplib.datamodel.item.Tour;
-import com.mlaskows.tsplib.datamodel.item.Tsp;
-import com.mlaskows.tsplib.datamodel.ItemBuilder;
+import com.mlaskows.tsplib.datamodel.tour.Tour;
+import com.mlaskows.tsplib.datamodel.tsp.Tsp;
+import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
 import java.io.IOException;
@@ -57,8 +57,8 @@ public class TspLibParser {
         return getFilledItemBuilder(pathToFile).buildTour();
     }
 
-    private static ItemBuilder getFilledItemBuilder(String pathToFile) throws IOException {
-        ItemBuilder builder = new ItemBuilder();
+    private static DataBuffer getFilledItemBuilder(String pathToFile) throws IOException {
+        DataBuffer builder = new DataBuffer();
         Stream<String> stream = Files.lines(Paths.get(pathToFile));
 
         List<String> lines = getNonEmptyTrimmedLines(stream);

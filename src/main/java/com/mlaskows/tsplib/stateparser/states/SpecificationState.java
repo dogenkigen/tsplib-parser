@@ -15,7 +15,7 @@
 
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.ItemBuilder;
+import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
@@ -31,7 +31,7 @@ public class SpecificationState implements State {
     @Override
     public void consumeLine(final ParsingContext context,
                             final String line,
-                            ItemBuilder builder) {
+                            DataBuffer builder) {
 
         KeywordAndValue keywordAndValue = extractKeywordAndValue(line);
 
@@ -44,7 +44,7 @@ public class SpecificationState implements State {
 
     }
 
-    private void addToBuilder(KeywordAndValue keywordAndValue, ItemBuilder builder) {
+    private void addToBuilder(KeywordAndValue keywordAndValue, DataBuffer builder) {
         switch (keywordAndValue.getKeyword()) {
             case NAME:
                 builder.withName(keywordAndValue.getValue());

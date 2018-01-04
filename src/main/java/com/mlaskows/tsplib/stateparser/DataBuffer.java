@@ -13,11 +13,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.mlaskows.tsplib.datamodel;
+package com.mlaskows.tsplib.stateparser;
 
-import com.mlaskows.tsplib.datamodel.item.Node;
-import com.mlaskows.tsplib.datamodel.item.Tour;
-import com.mlaskows.tsplib.datamodel.item.Tsp;
+import com.mlaskows.tsplib.datamodel.tour.Tour;
+import com.mlaskows.tsplib.datamodel.tsp.Tsp;
 import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.exception.TspLibException;
 
@@ -29,7 +28,7 @@ import java.util.List;
  *
  * @author Maciej Laskowski
  */
-public class ItemBuilder {
+public class DataBuffer {
 
     private String name;
     private Type type;
@@ -39,54 +38,54 @@ public class ItemBuilder {
     private EdgeWeightFormat edgeWeightFormat;
     private DisplayDataType displayDataType;
     private NodeCoordType nodeCoordType;
-    private List<Node> nodes;
+    private List<Tsp.Node> nodes;
     private List<int[]> tours;
     private int[][] edgeWeightData;
     private int lastTourEmptyIndex;
     private int lastEdgeWeightDataEmptyRowIndex;
     private int fillIndex;
 
-    public ItemBuilder withName(String name) {
+    public DataBuffer withName(String name) {
         this.name = name;
         return this;
     }
 
-    public ItemBuilder withType(Type type) {
+    public DataBuffer withType(Type type) {
         this.type = type;
         return this;
     }
 
-    public ItemBuilder withEdgeWeightType(EdgeWeightType edgeWeightType) {
+    public DataBuffer withEdgeWeightType(EdgeWeightType edgeWeightType) {
         this.edgeWeightType = edgeWeightType;
         return this;
     }
 
-    public ItemBuilder withEdgeWeightFormat(EdgeWeightFormat edgeWeightFormat) {
+    public DataBuffer withEdgeWeightFormat(EdgeWeightFormat edgeWeightFormat) {
         this.edgeWeightFormat = edgeWeightFormat;
         return this;
     }
 
-    public ItemBuilder withDimension(int dimension) {
+    public DataBuffer withDimension(int dimension) {
         this.dimension = dimension;
         return this;
     }
 
-    public ItemBuilder withComment(String comment) {
+    public DataBuffer withComment(String comment) {
         this.comment.append(comment);
         return this;
     }
 
-    public ItemBuilder withDisplayDataType(DisplayDataType displayDataType) {
+    public DataBuffer withDisplayDataType(DisplayDataType displayDataType) {
         this.displayDataType = displayDataType;
         return this;
     }
 
-    public ItemBuilder withNodeCoordType(NodeCoordType nodeCoordType) {
+    public DataBuffer withNodeCoordType(NodeCoordType nodeCoordType) {
         this.nodeCoordType = nodeCoordType;
         return this;
     }
 
-    public ItemBuilder addNode(Node node) {
+    public DataBuffer addNode(Tsp.Node node) {
         if (nodes == null) {
             nodes = new ArrayList<>(dimension);
         }
@@ -94,7 +93,7 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder addTourStep(int step) {
+    public DataBuffer addTourStep(int step) {
         if (tours == null) {
             tours = new ArrayList<>();
         }
@@ -110,7 +109,7 @@ public class ItemBuilder {
         lastTourEmptyIndex = 0;
     }
 
-    public ItemBuilder withEdgeWeightData(int[] data) {
+    public DataBuffer withEdgeWeightData(int[] data) {
         if (edgeWeightData == null) {
             edgeWeightData = new int[dimension][dimension];
             if (EdgeWeightFormat.UPPER_DIAG_ROW.equals(edgeWeightFormat)) {
@@ -143,35 +142,33 @@ public class ItemBuilder {
 
     private void putinEdgeWeightData(int[] data, int initialFillIndex) {
         fillIndex = initialFillIndex;
-        for (int i = 0; i < data.length; i++) {
-            edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
-                    data[i];
+        for (int element : data) {
+            edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] = element;
             fillIndex++;
         }
         lastEdgeWeightDataEmptyRowIndex++;
     }
 
     private void putInEdgeWeightDataLowerDiag(int[] data) {
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] == 0) {
+        for (int element : data) {
+            if (element == 0) {
                 lastEdgeWeightDataEmptyRowIndex++;
                 fillIndex = 0;
             } else {
-                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
-                        data[i];
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] = element;
                 fillIndex++;
             }
         }
     }
 
     private void putInEdgeWeightDataUpperDiag(int[] data) {
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] == 0) {
+        for (int element : data) {
+            if (element == 0) {
                 lastEdgeWeightDataEmptyRowIndex++;
                 fillIndex = lastEdgeWeightDataEmptyRowIndex + 1;
             } else {
                 edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
-                        data[i];
+                        element;
                 fillIndex++;
             }
         }

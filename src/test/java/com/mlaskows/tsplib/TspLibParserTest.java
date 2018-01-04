@@ -1,7 +1,7 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.datamodel.item.Tour;
-import com.mlaskows.tsplib.datamodel.item.Tsp;
+import com.mlaskows.tsplib.datamodel.tour.Tour;
+import com.mlaskows.tsplib.datamodel.tsp.Tsp;
 import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.parser.TspLibParser;
 import org.testng.Assert;
@@ -215,7 +215,7 @@ public class TspLibParserTest implements BaseWithTspTest {
     @Test
     public void testAll() throws IOException {
         final List<String> tsps = Files.list(Paths.get("tsplib"))
-                .map(path -> path.toAbsolutePath())
+                .map(Path::toAbsolutePath)
                 .map(Path::toString)
                 .filter(s -> s.endsWith("tsp") || s.endsWith("tour"))
                 .collect(toList());

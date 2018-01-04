@@ -13,7 +13,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.mlaskows.tsplib.datamodel.item;
+package com.mlaskows.tsplib.datamodel.tour;
 
 import com.mlaskows.tsplib.datamodel.types.Type;
 

@@ -15,7 +15,7 @@
 
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.datamodel.ItemBuilder;
+import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.exception.TspLibException;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
  */
 public interface State {
 
-    void consumeLine(ParsingContext context, String line, ItemBuilder builder);
+    void consumeLine(ParsingContext context, String line, DataBuffer builder);
 
     /**
      * Extracts {@link KeywordAndValue} object from a TSPLIB file line.

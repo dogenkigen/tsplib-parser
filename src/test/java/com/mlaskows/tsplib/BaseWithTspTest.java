@@ -1,7 +1,7 @@
 package com.mlaskows.tsplib;
 
-import com.mlaskows.tsplib.datamodel.item.Tour;
-import com.mlaskows.tsplib.datamodel.item.Tsp;
+import com.mlaskows.tsplib.datamodel.tour.Tour;
+import com.mlaskows.tsplib.datamodel.tsp.Tsp;
 import com.mlaskows.tsplib.parser.TspLibParser;
 
 import java.io.IOException;
