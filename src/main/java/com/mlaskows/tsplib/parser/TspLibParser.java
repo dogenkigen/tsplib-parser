@@ -23,9 +23,7 @@ import com.mlaskows.tsplib.stateparser.ParsingContext;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -58,8 +56,8 @@ public class TspLibParser {
     }
 
     private static DataBuffer getFilledItemBuilder(String pathToFile) throws IOException {
-        DataBuffer builder = new DataBuffer();
-        Stream<String> stream = Files.lines(Paths.get(pathToFile));
+        final DataBuffer builder = new DataBuffer();
+        final ParsingContext context = new ParsingContext();
 
         getNonEmptyTrimmedLines(Files.lines(Paths.get(pathToFile)))
                 .forEach(line -> context.consumeLine(line, builder));
