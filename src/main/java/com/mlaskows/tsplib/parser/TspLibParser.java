@@ -61,21 +61,17 @@ public class TspLibParser {
         DataBuffer builder = new DataBuffer();
         Stream<String> stream = Files.lines(Paths.get(pathToFile));
 
-        List<String> lines = getNonEmptyTrimmedLines(stream);
+        getNonEmptyTrimmedLines(Files.lines(Paths.get(pathToFile)))
+                .forEach(line -> context.consumeLine(line, builder));
 
-        ParsingContext context = new ParsingContext();
-        for (String line : lines) {
-            context.consumeLine(line, builder);
-        }
         return builder;
     }
 
-    private static List<String> getNonEmptyTrimmedLines(Stream<String> stream) {
+    private static Stream<String> getNonEmptyTrimmedLines(Stream<String> stream) {
         return stream
                 .filter(Objects::nonNull)
                 .map(String::trim)
-                .filter(l -> !l.isEmpty())
-                .collect(Collectors.toList());
+                .filter(l -> !l.isEmpty());
     }
 
 }
