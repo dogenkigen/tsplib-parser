@@ -16,8 +16,8 @@
 package com.mlaskows.tsplib.util;
 
 import com.mlaskows.tsplib.datamodel.tsp.Tsp;
-import com.mlaskows.tsplib.exception.TspLibException;
 import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
+import com.mlaskows.tsplib.exception.TspLibException;
 
 import java.util.function.BiFunction;
 
@@ -62,20 +62,20 @@ public class EdgeWeightCalculationMethodFactory {
     }
 
     private static double calculateEuc2d(Tsp.Node i, Tsp.Node j) {
-        final double xd = i.getX() - j.getX();
-        final double yd = i.getY() - j.getY();
+        double xd = i.getX() - j.getX();
+        double yd = i.getY() - j.getY();
         return Math.sqrt(xd * xd + yd * yd) + 0.5;
     }
 
     private static BiFunction<Tsp.Node, Tsp.Node, Integer> getGeoFunction() {
         return (i, j) -> {
-            final double latitudeI = convertToRadians(i.getY());
-            final double longitudeI = convertToRadians(i.getX());
-            final double latitudeJ = convertToRadians(j.getY());
-            final double longitudeJ = convertToRadians(j.getX());
-            final double q1 = Math.cos(longitudeI - longitudeJ);
-            final double q2 = Math.cos(latitudeI - latitudeJ);
-            final double q3 = Math.cos(latitudeI + latitudeJ);
+            double latitudeI = convertToRadians(i.getY());
+            double longitudeI = convertToRadians(i.getX());
+            double latitudeJ = convertToRadians(j.getY());
+            double longitudeJ = convertToRadians(j.getX());
+            double q1 = Math.cos(longitudeI - longitudeJ);
+            double q2 = Math.cos(latitudeI - latitudeJ);
+            double q3 = Math.cos(latitudeI + latitudeJ);
             return (int) (EARTH_RADIUS *
                     Math.acos(0.5 * ((1.0 + q1) * q2 - (1.0 - q1) * q3)) + 1.0);
         };
@@ -83,22 +83,22 @@ public class EdgeWeightCalculationMethodFactory {
 
     private static double convertToRadians(Double v) {
         int deg = v.intValue();
-        final double min = v - deg;
+        double min = v - deg;
         return Math.PI * (deg + 0.5 * min / 3.0) / 180;
     }
 
     private static BiFunction<Tsp.Node, Tsp.Node, Integer> getMan2dFunction() {
         return (i, j) -> {
-            final double xd = Math.abs(i.getX() - j.getX());
-            final double yd = Math.abs(i.getY() - j.getY());
+            double xd = Math.abs(i.getX() - j.getX());
+            double yd = Math.abs(i.getY() - j.getY());
             return (int) (xd + yd);
         };
     }
 
     private static BiFunction<Tsp.Node, Tsp.Node, Integer> getMax2dFunction() {
         return (i, j) -> {
-            final double xd = Math.abs(i.getX() - j.getX());
-            final double yd = Math.abs(i.getY() - j.getY());
+            double xd = Math.abs(i.getX() - j.getX());
+            double yd = Math.abs(i.getY() - j.getY());
             return (int) Math.max(xd, yd);
         };
     }
@@ -109,18 +109,17 @@ public class EdgeWeightCalculationMethodFactory {
 
     private static BiFunction<Tsp.Node, Tsp.Node, Integer> getAttFunction() {
         return (i, j) -> {
-            final double xd = i.getX() - j.getX();
-            final double yd = i.getY() - j.getY();
-            final double rij = Math.sqrt((xd * xd + yd * yd) / 10.0);
-            final double tij = cutDecimal(rij);
+            double xd = i.getX() - j.getX();
+            double yd = i.getY() - j.getY();
+            double rij = Math.sqrt((xd * xd + yd * yd) / 10.0);
+            double tij = cutDecimal(rij);
 
             return (int) (tij < rij ? tij + 1 : tij);
         };
     }
 
     private static double cutDecimal(double x) {
-        final int k = (int) x;
-        return (double) k;
+        return (int) x;
     }
 
 }

@@ -134,8 +134,7 @@ public class DataBuffer {
                 putInEdgeWeightDataUpperDiag(data);
                 break;
             default:
-                throw new TspLibException("Can't parseTsp for edge weight format "
-                        + edgeWeightFormat);
+                throw new TspLibException("Can't parseTsp for edge weight format " + edgeWeightFormat);
         }
         return this;
     }
@@ -167,8 +166,7 @@ public class DataBuffer {
                 lastEdgeWeightDataEmptyRowIndex++;
                 fillIndex = lastEdgeWeightDataEmptyRowIndex + 1;
             } else {
-                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] =
-                        element;
+                edgeWeightData[lastEdgeWeightDataEmptyRowIndex][fillIndex] = element;
                 fillIndex++;
             }
         }

@@ -30,7 +30,6 @@ public class TourDataState implements DataState {
         if (stateChanged(context, line)) {
             return;
         }
-
         final String[] valuesArray = getValuesArray(line);
         for (String value : valuesArray) {
             final int step = Integer.parseInt(value);

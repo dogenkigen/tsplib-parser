@@ -17,6 +17,7 @@ package com.mlaskows.tsplib.parser;
 
 import com.mlaskows.tsplib.datamodel.tour.Tour;
 import com.mlaskows.tsplib.datamodel.tsp.Tsp;
+import com.mlaskows.tsplib.exception.TspLibException;
 import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
 
@@ -38,9 +39,8 @@ public class TspLibParser {
      *
      * @param pathToFile absolute path to tsp file
      * @return object representation of TSPLIB tsp file
-     * @throws IOException
      */
-    public static Tsp parseTsp(String pathToFile) throws IOException {
+    public static Tsp parseTsp(String pathToFile) {
         return getFilledItemBuilder(pathToFile).buildTsp();
     }
 
@@ -49,27 +49,29 @@ public class TspLibParser {
      *
      * @param pathToFile absolute path to tour file
      * @return representation of TSPLIB tour file
-     * @throws IOException
      */
-    public static Tour parseTour(String pathToFile) throws IOException {
+    public static Tour parseTour(String pathToFile) {
         return getFilledItemBuilder(pathToFile).buildTour();
     }
 
-    private static DataBuffer getFilledItemBuilder(String pathToFile) throws IOException {
+    private static DataBuffer getFilledItemBuilder(String pathToFile) {
         final DataBuffer builder = new DataBuffer();
         final ParsingContext context = new ParsingContext();
 
-        getNonEmptyTrimmedLines(Files.lines(Paths.get(pathToFile)))
-                .forEach(line -> context.consumeLine(line, builder));
+        try {
+            getNonEmptyTrimmedLines(Files.lines(Paths.get(pathToFile)))
+                    .forEach(line -> context.consumeLine(line, builder));
+        } catch (IOException e) {
+            throw new TspLibException(e.getMessage());
+        }
 
         return builder;
     }
 
     private static Stream<String> getNonEmptyTrimmedLines(Stream<String> stream) {
-        return stream
-                .filter(Objects::nonNull)
+        return stream.filter(Objects::nonNull)
                 .map(String::trim)
-                .filter(l -> !l.isEmpty());
+                .filter(line -> !line.isEmpty());
     }
 
 }

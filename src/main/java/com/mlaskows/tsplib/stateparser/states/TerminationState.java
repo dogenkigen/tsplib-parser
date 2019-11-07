@@ -30,4 +30,5 @@ public class TerminationState implements State {
     public void consumeLine(ParsingContext context, String line, DataBuffer builder) {
         return;
     }
+
 }

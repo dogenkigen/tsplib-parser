@@ -15,8 +15,8 @@
 
 package com.mlaskows.tsplib.stateparser.states;
 
-import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.exception.TspLibException;
+import com.mlaskows.tsplib.stateparser.DataBuffer;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
@@ -60,8 +60,7 @@ public interface State {
      * @return true if a line starts with keyword
      */
     default boolean startsWithKeyword(String line) {
-        return Stream.of(Keyword.values())
-                .anyMatch(v -> line.contains(v.toString()));
+        return Stream.of(Keyword.values()).anyMatch(v -> line.contains(v.toString()));
     }
 
     /**
@@ -87,8 +86,7 @@ public interface State {
                 newState = new TerminationState();
                 break;
             default:
-                throw new TspLibException("Can't determine state based on " +
-                        "keyword" + keyword);
+                throw new TspLibException("Can't determine state based on keyword" + keyword);
         }
         return newState;
     }

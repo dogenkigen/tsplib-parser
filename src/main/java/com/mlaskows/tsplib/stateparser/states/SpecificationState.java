@@ -15,8 +15,12 @@
 
 package com.mlaskows.tsplib.stateparser.states;
 
+import com.mlaskows.tsplib.datamodel.types.DisplayDataType;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightFormat;
+import com.mlaskows.tsplib.datamodel.types.EdgeWeightType;
+import com.mlaskows.tsplib.datamodel.types.NodeCoordType;
+import com.mlaskows.tsplib.datamodel.types.Type;
 import com.mlaskows.tsplib.stateparser.DataBuffer;
-import com.mlaskows.tsplib.datamodel.types.*;
 import com.mlaskows.tsplib.stateparser.Keyword;
 import com.mlaskows.tsplib.stateparser.KeywordAndValue;
 import com.mlaskows.tsplib.stateparser.ParsingContext;
@@ -29,19 +33,13 @@ import com.mlaskows.tsplib.stateparser.ParsingContext;
 public class SpecificationState implements State {
 
     @Override
-    public void consumeLine(final ParsingContext context,
-                            final String line,
-                            DataBuffer builder) {
-
+    public void consumeLine(final ParsingContext context, final String line, DataBuffer builder) {
         KeywordAndValue keywordAndValue = extractKeywordAndValue(line);
-
         if (Keyword.isDataKeyword(keywordAndValue.getKeyword())) {
             context.setState(getState(keywordAndValue.getKeyword()));
             return;
         }
-
         addToBuilder(keywordAndValue, builder);
-
     }
 
     private void addToBuilder(KeywordAndValue keywordAndValue, DataBuffer builder) {
@@ -50,31 +48,25 @@ public class SpecificationState implements State {
                 builder.withName(keywordAndValue.getValue());
                 break;
             case TYPE:
-                builder.withType(Type.valueOf(keywordAndValue
-                        .getValue()));
+                builder.withType(Type.valueOf(keywordAndValue.getValue()));
                 break;
             case COMMENT:
                 builder.withComment(keywordAndValue.getValue());
                 break;
             case DIMENSION:
-                builder.withDimension(Integer.parseInt(keywordAndValue
-                        .getValue()));
+                builder.withDimension(Integer.parseInt(keywordAndValue.getValue()));
                 break;
             case EDGE_WEIGHT_TYPE:
-                builder.withEdgeWeightType(EdgeWeightType
-                        .valueOf(keywordAndValue.getValue()));
+                builder.withEdgeWeightType(EdgeWeightType.valueOf(keywordAndValue.getValue()));
                 break;
             case DISPLAY_DATA_TYPE:
-                builder.withDisplayDataType(DisplayDataType.valueOf
-                        (keywordAndValue.getValue()));
+                builder.withDisplayDataType(DisplayDataType.valueOf(keywordAndValue.getValue()));
                 break;
             case EDGE_WEIGHT_FORMAT:
-                builder.withEdgeWeightFormat(EdgeWeightFormat.valueOf
-                        (keywordAndValue.getValue()));
+                builder.withEdgeWeightFormat(EdgeWeightFormat.valueOf(keywordAndValue.getValue()));
                 break;
             case NODE_COORD_TYPE:
-                builder.withNodeCoordType(NodeCoordType.valueOf
-                        (keywordAndValue.getValue()));
+                builder.withNodeCoordType(NodeCoordType.valueOf(keywordAndValue.getValue()));
                 break;
             default:
                 break;
